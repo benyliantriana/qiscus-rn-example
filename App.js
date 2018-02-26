@@ -139,13 +139,14 @@ export default class App extends React.Component {
             initApp={initApp}
             // optional styling props
             chatListStyle={{backgroundColor: 'transparent'}}
-            textInputStyle={{borderRadius: 5, borderColor: '#68a7f0', borderWidth: 2}}
-            sendIconStyle={{color: '#c1de13'}}
-            attachIconStyle={{color: '#c1de13'}}
-            messageItemRightStyle={{backgroundColor: '#afa73e'}}
-            messageItemLeftStyle={{backgroundColor: '#c93ea6'}}
+            textInputStyle={{borderRadius: 5, borderColor: '#ccc', borderWidth: 1}}
+            sendIconStyle={{color: '#444'}}
+            attachIconStyle={{color: '#444'}}
+            messageItemRightStyle={{backgroundColor: '#bdc3c7'}}
+            messageItemLeftStyle={{backgroundColor: '#ecf0f1'}}
             senderTextStyle={{color: '#84c2d1'}}
-            messageTextStyle={{color: '#f4f4f4'}}
+            messageTextStyle={{color: '#444'}}
+            timeTextStyle={{color: '#444', fontSize: 11}}
             // for loadingIndicatorColor string only please
             loadingIndicatorColor="#f439ec"
           />
