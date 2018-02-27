@@ -1737,6 +1737,10 @@ data-uri-to-buffer@1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/data-uri-to-buffer/-/data-uri-to-buffer-1.2.0.tgz#77163ea9c20d8641b4707e8f18abdf9a78f34835"
 
+date-fns@^1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
+
 dateformat@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-2.2.0.tgz#4065e2013cf9fb916ddfd82efb506ad4c6769062"
@@ -4984,10 +4988,11 @@ react-native-modalbox@^1.3.4:
 
 "react-native-qiscus-sdk@git://github.com/qiscus/react-native-qiscus-sdk-js.git":
   version "0.2.2"
-  resolved "git://github.com/qiscus/react-native-qiscus-sdk-js.git#75d07b39a596d5bfd62a447ce3867021388d9907"
+  resolved "git://github.com/qiscus/react-native-qiscus-sdk-js.git#94fe5cfaa2f9dedaf37ec4f0784f279bf436e2c6"
   dependencies:
     class-autobind "^0.1.4"
     color "^0.11.3"
+    date-fns "^1.29.0"
     lodash "^4.13.1"
     moment "^2.13.0"
     native-base "^2.2.1"
