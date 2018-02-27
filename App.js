@@ -98,11 +98,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-  photo: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-  },
   containerRow: {
     padding: 12,
     flexDirection: 'row',

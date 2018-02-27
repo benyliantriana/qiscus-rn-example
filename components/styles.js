@@ -129,5 +129,15 @@ export default{
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
     padding: 10,
-  }
+    flex:1,
+    flexDirection:'row',
+    width: '100%',
+    alignItems: 'center',
+  },
+  photo: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    marginRight: 20,
+  },
 };

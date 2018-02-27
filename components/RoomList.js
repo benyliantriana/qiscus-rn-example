@@ -14,13 +14,12 @@ export default function RoomList(props) {
   const defaultAvatar = 'https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png';
   if(rooms.length < 1) return <View style={styles.container}><Text>Room is being loaded ...</Text></View>
   return (
-    <ScrollView style={styles.roomRow}>
+    <ScrollView>
       {rooms.map(room => {
         const avatar_url = room.avatar_url ? room.avatar_url : 'https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png';
         return <TouchableOpacity onPress={props.openChat.bind(null, room.id)} key={room.id}>
-          <View style={{flex:1}}>
+          <View style={styles.roomRow}>
             <Image source={{ uri: avatar_url }} style={styles.photo} />
-            <Image source={{ uri: defaultAvatar}} style={styles.photo} />
             <Text>{room.room_name}</Text>
           </View>
         </TouchableOpacity>
