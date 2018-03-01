@@ -9,11 +9,12 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import QiscusSDK from './qiscusSdk';
+import qiscus from './libs/SDKCore';
 import RoomList from './components/RoomList';
+import ChatPanel from './components/ChatPanel';
 //  import Renderer from './chatRenderer';
 //  import {InitApp} from 'react-native-qiscus-sdk'
-const qiscus = new QiscusSDK();
+// const qiscus = new QiscusSDK();
 
 export default class App extends React.Component {
   constructor() {
@@ -24,6 +25,7 @@ export default class App extends React.Component {
       rooms: [],
       activePage: 'rooms',
       isLogin: false,
+      curRoomId: null,
     };
   }
   componentWillMount() {
@@ -48,13 +50,15 @@ export default class App extends React.Component {
   }
 
   openChat(roomId) {
-    qiscus.chatGroup(roomId).then(() => {
-      this.setState({
-        activeRoom: qiscus.selected,
-        activeComments: qiscus.selected.comments,
-        activePage: 'comments',
-      });
+    // console.log('isi qiscus', qiscus);
+    // qiscus.chatGroup(roomId).then(() => {
+    this.setState({
+      // activeRoom: qiscus.selected,
+      // activeComments: qiscus.selected.comments,
+      activePage: 'comments',
+      curRoomId: roomId,
     });
+    // });
   }
 
   render() {
@@ -72,10 +76,16 @@ export default class App extends React.Component {
     } else {
       // display comment list
       return (
-        <View>
-          <TouchableOpacity style={{marginLeft: 30, marginBottom: 10, marginTop: 0, justifyContent: 'center', alignItems: 'center', height: 40, width: 80, borderWidth: 1, borderColor: '#333131'}} onPress={() => this.setState({selectedRoom: null})}>
+        <View style={styles.container}>
+          <TouchableOpacity style={{
+            margin: 10, justifyContent: 'center', 
+            alignItems: 'center', height: 40, width: 80, 
+            borderWidth: 1, borderColor: '#333131',
+            borderRadius: 20
+          }} onPress={() => this.setState({activePage: 'rooms'})}>
             <Text>Back</Text>
           </TouchableOpacity>
+          <ChatPanel roomId={this.state.curRoomId} />
         </View>
       );
     }
