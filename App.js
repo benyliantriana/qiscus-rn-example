@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  KeyboardAvoidingView,
   FlatList,
 } from 'react-native';
 import qiscus from './libs/SDKCore';
@@ -76,7 +77,7 @@ export default class App extends React.Component {
     } else {
       // display comment list
       return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
           <TouchableOpacity style={{
             margin: 10, justifyContent: 'center', 
             alignItems: 'center', height: 40, width: 80, 
@@ -86,7 +87,7 @@ export default class App extends React.Component {
             <Text>Back</Text>
           </TouchableOpacity>
           <ChatPanel roomId={this.state.curRoomId} />
-        </View>
+        </KeyboardAvoidingView>
       );
     }
   }

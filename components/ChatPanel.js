@@ -36,13 +36,22 @@ export default class ChatPanel extends Component {
     }
     this.setState({newMessageText: text});
   }
+  sendComment() {
+    qiscus.sendComment(qiscus.selected.id, this.state.newMessageText)
+      .then(() => this.setState({newMessageText: ''}));
+  }
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
-          {this.state.comments.map(comment=> {
+          {this.state.comments.map((comment, index)=> {
             const isMe = comment.username_real === qiscus.user_id;
-            return <Comment data={comment} key={comment.unique_id} isMe={isMe} />;
+            const showAvatar = 
+              index === 0 || comment.username_real !== this.state.comments[index-1].username_real
+              ? true : false;
+            return <Comment data={comment} 
+              showAvatar={showAvatar}
+              key={comment.unique_id} isMe={isMe} />;
           })}
         </ScrollView>
         {/* start of comment form */}
@@ -56,7 +65,16 @@ export default class ChatPanel extends Component {
             />
           </View>
           {/* uploader */}
-          {this.state.isSending ? null : <TouchableOpacity style={{padding: 2}} onPress={() => {Keyboard.dismiss(); Platform.OS === 'android' ? this._sendMessage(this.state.newMessage) : null;}}>
+          {this.state.isSending ? 
+            null : 
+            <TouchableOpacity style={{padding: 2}} 
+              onPress={() => {
+                Keyboard.dismiss(); 
+                Platform.OS === 'android' 
+                  ? this.sendMessage() 
+                  : null;
+                }
+              }>
               <Icon name="send" size={30} style={[{marginRight: 5, color: '#bbb'}]}/>
             </TouchableOpacity>
           }
