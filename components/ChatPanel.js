@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   View,
   Text,
-  FlatList,
-  SectionList,
+  TextInput,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
+  Keyboard,
+  Platform,
   Image } from 'react-native';
 import styles from './styles';
 import qiscus from '../libs/SDKCore';
@@ -16,12 +19,22 @@ export default class ChatPanel extends Component {
     super(props);
     this.state = {
       comments: [],
+      newMessageText: '',
+      isSending: false,
     };
   }
   componentWillMount() {
     qiscus.chatGroup(this.props.roomId).then((res) => {
       this.setState({ comments: res.comments });
     });
+  }
+  setNewMessageText(text) {
+    if (text.length > 0) {
+      qiscus.publishTyping(1);
+    } else {
+      qiscus.publishTyping(0);
+    }
+    this.setState({newMessageText: text});
   }
   render() {
     return (
@@ -32,10 +45,39 @@ export default class ChatPanel extends Component {
             return <Comment data={comment} key={comment.unique_id} isMe={isMe} />;
           })}
         </ScrollView>
-        <View>
-          <Text>Ini untuk comment form</Text>
+        {/* start of comment form */}
+        <View style={style.commentForm}>
+          {/* comment input*/}
+          <View style={style.commentInput}>
+            <TextInput underlineColorAndroid='transparent'
+              onBlur={Keyboard.dismiss()}
+              value={this.state.newMessageText} placeholder="Say something" multiline={true}
+              onChangeText={this.setNewMessageText.bind(this)}
+            />
+          </View>
+          {/* uploader */}
+          {this.state.isSending ? null : <TouchableOpacity style={{padding: 2}} onPress={() => {Keyboard.dismiss(); Platform.OS === 'android' ? this._sendMessage(this.state.newMessage) : null;}}>
+              <Icon name="send" size={30} style={[{marginRight: 5, color: '#bbb'}]}/>
+            </TouchableOpacity>
+          }
         </View>
       </View>
     );
   }
 }
+
+const style = {
+  commentForm: {
+    padding: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  commentInput: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    marginRight: 15,
+  }
+};
