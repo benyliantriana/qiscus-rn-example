@@ -21,11 +21,18 @@ export default class ChatPanel extends Component {
       comments: [],
       newMessageText: '',
       isSending: false,
+      isLoadingMessages: true,
     };
   }
-  componentWillMount() {
+  // componentWillMount() {
+  // }
+  componentDidMount() {
     qiscus.chatGroup(this.props.roomId).then((res) => {
-      this.setState({ comments: res.comments });
+      this.setState({
+        comments: res.comments,
+        isLoadingMessages: false,
+      });
+      setTimeout(() => this._scrollView.scrollToEnd(), 0);
     });
   }
   setNewMessageText(text) {
@@ -41,9 +48,17 @@ export default class ChatPanel extends Component {
       .then(() => this.setState({newMessageText: ''}));
   }
   render() {
+    // if still loading show activity indicator
+    if(this.state.isLoadingMessages) return <View style={{...styles.container, justifyContent: 'center', alignItems: 'center'}}>
+      <ActivityIndicator style={{alignItems: 'center', justifyContent: 'center'}} size="large" color="#2ecc71" />
+    </View>;
+
+    // if data is ready, render
     return (
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView
+          ref={(scrollView) => { this._scrollView = scrollView; }}
+        >
           {this.state.comments.map((comment, index)=> {
             const isMe = comment.username_real === qiscus.user_id;
             const showAvatar = 
@@ -59,7 +74,6 @@ export default class ChatPanel extends Component {
           {/* comment input*/}
           <View style={style.commentInput}>
             <TextInput underlineColorAndroid='transparent'
-              onBlur={Keyboard.dismiss()}
               value={this.state.newMessageText} placeholder="Say something" multiline={true}
               onChangeText={this.setNewMessageText.bind(this)}
             />
