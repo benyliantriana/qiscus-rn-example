@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import Lightbox from 'react-native-lightbox';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   View, Text,
   ActivityIndicator,
+  TouchableOpacity,
   Dimensions,
+  Linking,
   Image } from 'react-native';
 const {height, width} = Dimensions.get('window');
 // const {width, height} = Dimensions.get('window');
@@ -22,16 +25,14 @@ function renderMessage(message, isMe) {
   const isFile = messageString.substring(0,6) == '[file]' ? true : false;
   const messageURI = (isFile) ? messageString.substring(6,messageString.length-7).trim() : '';
   const isImage = isFile && ['jpg','gif','jpeg','png'].includes(messageURI.split('.').pop().toLowerCase());
-  if(isImage){
+  if(isFile){
     // return <View><Text>Just another test {messageURI}</Text></View>;
     return (
-      <View style={{...buildBubbleStyle(isMe), ...style.picture}}>
-        <Lightbox underlayColor="white" activeProps={{style: style.pictureLoad}}>
-          <Image
-            style={style.picture}
-            source={{uri: messageURI}}
-          />
-        </Lightbox>
+      <View style={{...buildBubbleStyle(isMe)}}>
+        {isImage
+          ? renderImage(messageURI)
+          : renderFile(messageURI)
+        }
       </View>
     );
   } else {
@@ -42,6 +43,29 @@ function renderMessage(message, isMe) {
       </View>
     );
   }
+}
+
+function renderImage(uri) {
+  return (
+    <Lightbox underlayColor="white" activeProps={{style: style.pictureLoad}}>
+      <Image
+        style={style.picture}
+        source={{uri: uri}}
+      />
+    </Lightbox>
+  );
+}
+
+function renderFile(uri) {
+  return (
+    <TouchableOpacity onPress={() => {
+        Linking.openURL(`${uri}`);
+      }}
+      style={style.files}
+    >
+      <Icon name="description" size={80} /><Text style={style.fileLabel}>{uri}</Text>
+    </TouchableOpacity>
+  );
 }
 
 export default function Comment(props) {
@@ -146,5 +170,16 @@ const style = {
   pictureLoad: {
     maxWidth: width,
     minHeight: 0.30 * height,
+  },
+  files: {
+    flexDirection: 'row',
+    backgroundColor: '#f4f4f4',
+    width: 0.45 * width,
+    justifyContent: 'flex-start',
+  },
+  fileLabel: {
+    width: 80,
+    marginTop: 10,
+    fontSize: 9,
   },
 };
