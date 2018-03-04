@@ -22,6 +22,7 @@
     "expo": "^25.0.0",
     "react": "16.2.0",
     "react-native": "0.52",
+    "react-native-lightbox": "^0.7.0",
     "react-native-qiscus-sdk": "git://github.com/qiscus/react-native-qiscus-sdk-js.git"
   }
 }

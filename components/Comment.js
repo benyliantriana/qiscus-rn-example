@@ -1,22 +1,53 @@
 import React, { Component } from 'react';
+import Lightbox from 'react-native-lightbox';
 import {
   View, Text,
+  ActivityIndicator,
+  Dimensions,
   Image } from 'react-native';
+const {height, width} = Dimensions.get('window');
 // const {width, height} = Dimensions.get('window');
 const colorConfig = {
   leftBubbleColor: '#ddd',
   rightBubbleColor: '#ecf0f1'
+}
+const buildBubbleStyle = function(isMe) {
+  return isMe
+    ? {...style.messageStyle,alignItems:'flex-end',backgroundColor:colorConfig.rightBubbleColor}
+    : {...style.messageStyle,backgroundColor:colorConfig.leftBubbleColor}
+};
+
+function renderMessage(message, isMe) {
+  const messageString = message.message;
+  const isFile = messageString.substring(0,6) == '[file]' ? true : false;
+  const messageURI = (isFile) ? messageString.substring(6,messageString.length-7).trim() : '';
+  const isImage = isFile && ['jpg','gif','jpeg','png'].includes(messageURI.split('.').pop().toLowerCase());
+  if(isImage){
+    // return <View><Text>Just another test {messageURI}</Text></View>;
+    return (
+      <View style={{...buildBubbleStyle(isMe), ...style.picture}}>
+        <Lightbox underlayColor="white" activeProps={{style: style.pictureLoad}}>
+          <Image
+            style={style.picture}
+            source={{uri: messageURI}}
+          />
+        </Lightbox>
+      </View>
+    );
+  } else {
+    return (
+      <View style={buildBubbleStyle(isMe)}>
+        <Text style={{maxWidth:'70%'}}>{messageString}</Text>
+        <Text style={style.commentMessageTime}>{message.time}</Text>
+      </View>
+    );
+  }
 }
 
 export default function Comment(props) {
   const avatar_url = props.data.avatar 
     ? props.data.avatar 
     : 'https://qiscuss3.s3.amazonaws.com/uploads/55c0c6ee486be6b686d52e5b9bbedbbf/2.png';
-  const buildBubbleStyle = function(isMe) {
-    return isMe
-      ? {...style.messageStyle,alignItems:'flex-end',backgroundColor:colorConfig.rightBubbleColor}
-      : {...style.messageStyle,backgroundColor:colorConfig.leftBubbleColor}
-  };
   const buildMessageStyle = function(isMe) {
     return isMe
       ? {...style.flexRow,justifyContent:'flex-end',marginLeft:10}
@@ -33,10 +64,7 @@ export default function Comment(props) {
       {!props.isMe && props.showAvatar ? <View style={style.arrowLeft}></View> : null}
       { /* Main Comment Message */ }
       <View style={buildMessageStyle(props.isMe)}>
-        <View style={buildBubbleStyle(props.isMe)}>
-          <Text style={{maxWidth:'70%'}}>{props.data.message}</Text>
-          <Text style={style.commentMessageTime}>{props.data.time}</Text>
-        </View>
+        {renderMessage(props.data, props.isMe)}
       </View>
       { /* arrow for our own comment */ }
       {props.isMe && props.showAvatar ? <View style={style.arrowRight}></View> : null}
@@ -110,5 +138,13 @@ const style = {
     borderTopColor: colorConfig.rightBubbleColor,
     borderRightColor: 'transparent',
     borderBottomColor: 'transparent',
+  },
+  picture: {
+    minHeight: 0.20 * height,
+    minWidth: 0.45 * width,
+  },
+  pictureLoad: {
+    maxWidth: width,
+    minHeight: 0.30 * height,
   },
 };
