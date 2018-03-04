@@ -27,7 +27,7 @@ export default class App extends React.Component {
       activePage: 'rooms',
       isLogin: false,
       curRoomId: null,
-      mylog: '',
+      mylog: 0,
     };
   }
   componentWillMount() {
@@ -41,7 +41,11 @@ export default class App extends React.Component {
       AppId: 'sdksample',
       options: {
         loginSuccessCallback: this.loadRoomList.bind(this),
-        newMessagesCallback: (comments) => { console.log("NEW MESSAGE"); this.updateActiveComments.bind(null, comments) },
+        newMessagesCallback: (comments) => {
+          this.setState({mylog: comments[0].message});
+          setTimeout(() => this.setState({ activeComments: qiscus.selected.comments }), 0);
+        },
+        typingCallback: (typing) => this.setState({mylog: JSON.stringify(typing)})
       }
     });
     qiscus.setUser(userAuth.email, userAuth.password, userAuth.displayName, userAuth.avatar);
@@ -54,7 +58,7 @@ export default class App extends React.Component {
 
   updateActiveComments(comments) {
     this.setState({
-      mylog: qiscus.selected.comments[qiscus.selected.comments.length - 1].message,
+      mylog: this.state.mylog + 1,
       activeComments: qiscus.selected.comments,
     });
   }
@@ -93,7 +97,7 @@ export default class App extends React.Component {
             borderWidth: 1, borderColor: '#333131',
             borderRadius: 20
           }} onPress={() => this.setState({activePage: 'rooms'})}>
-            <Text>Back {this.state.mylog}</Text>
+            <Text>Back</Text>
           </TouchableOpacity>
           <ChatPanel roomId={this.state.curRoomId}
             activeComments={this.state.activeComments}

@@ -36,6 +36,9 @@ export default class ChatPanel extends Component {
       setTimeout(() => this._scrollView.scrollToEnd(), 0);
     });
   }
+  componentDidUpdate() {
+    setTimeout(() => this._scrollView.scrollToEnd(), 200);
+  }
   setNewMessageText(text) {
     if (text.length > 0) {
       qiscus.publishTyping(1);
