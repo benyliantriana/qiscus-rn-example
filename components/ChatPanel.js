@@ -18,7 +18,7 @@ export default class ChatPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: [],
+      comments: props.activeComments,
       newMessageText: '',
       isSending: false,
       isLoadingMessages: true,
@@ -32,6 +32,7 @@ export default class ChatPanel extends Component {
         comments: res.comments,
         isLoadingMessages: false,
       });
+      this.props.updateActiveComments();
       setTimeout(() => this._scrollView.scrollToEnd(), 0);
     });
   }
@@ -47,6 +48,7 @@ export default class ChatPanel extends Component {
     qiscus.sendComment(qiscus.selected.id, this.state.newMessageText)
       .then(() => {
         this.setState({newMessageText: ''})
+        qiscus.publishTyping(0);
         setTimeout(() => this._scrollView.scrollToEnd(), 0);
       });
   }
@@ -59,13 +61,11 @@ export default class ChatPanel extends Component {
     // if data is ready, render
     return (
       <View style={styles.container}>
-        <ScrollView
-          ref={(scrollView) => { this._scrollView = scrollView; }}
-        >
-          {this.state.comments.map((comment, index)=> {
+        <ScrollView ref={(scrollView) => { this._scrollView = scrollView; }}>
+          {this.props.activeComments.map((comment, index)=> {
             const isMe = comment.username_real === qiscus.user_id;
             const showAvatar = 
-              index === 0 || comment.username_real !== this.state.comments[index-1].username_real
+              index === 0 || comment.username_real !== this.props.activeComments[index-1].username_real
               ? true : false;
             return <Comment data={comment} 
               showAvatar={showAvatar}
