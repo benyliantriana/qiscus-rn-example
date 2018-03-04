@@ -41,7 +41,7 @@ export default class App extends React.Component {
       AppId: 'sdksample',
       options: {
         loginSuccessCallback: this.loadRoomList.bind(this),
-        newMessagesCallback: (comments) => this.updateActiveComments.bind(null, comments),
+        newMessagesCallback: (comments) => { console.log("NEW MESSAGE"); this.updateActiveComments.bind(null, comments) },
       }
     });
     qiscus.setUser(userAuth.email, userAuth.password, userAuth.displayName, userAuth.avatar);

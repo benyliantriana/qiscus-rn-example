@@ -45,6 +45,7 @@ export default class ChatPanel extends Component {
     this.setState({newMessageText: text});
   }
   sendComment() {
+    console.log("SEND COMMENT")
     qiscus.sendComment(qiscus.selected.id, this.state.newMessageText)
       .then(() => {
         this.setState({newMessageText: ''})
@@ -86,10 +87,10 @@ export default class ChatPanel extends Component {
             null : 
             <TouchableOpacity style={{padding: 2}} 
               onPress={() => {
-                Keyboard.dismiss(); 
+                // Keyboard.dismiss(); 
                 Platform.OS === 'android' 
                   ? this.sendComment() 
-                  : null;
+                  : this.sendComment();
                 }
               }>
               <Icon name="send" size={30} style={[{marginRight: 5, color: '#bbb'}]}/>
