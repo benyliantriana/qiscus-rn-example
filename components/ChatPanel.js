@@ -45,7 +45,10 @@ export default class ChatPanel extends Component {
   }
   sendComment() {
     qiscus.sendComment(qiscus.selected.id, this.state.newMessageText)
-      .then(() => this.setState({newMessageText: ''}));
+      .then(() => {
+        this.setState({newMessageText: ''})
+        setTimeout(() => this._scrollView.scrollToEnd(), 0);
+      });
   }
   render() {
     // if still loading show activity indicator
@@ -85,7 +88,7 @@ export default class ChatPanel extends Component {
               onPress={() => {
                 Keyboard.dismiss(); 
                 Platform.OS === 'android' 
-                  ? this.sendMessage() 
+                  ? this.sendComment() 
                   : null;
                 }
               }>
