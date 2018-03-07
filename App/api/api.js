@@ -2,6 +2,11 @@ import apisauce from 'apisauce'
 import { serviceUrl, apiQiscus, storage } from '../config'
 import {token} from '../store'
 
+/**
+ * this is api that will be used in the apps
+ * these type of api will be call in the saga file, connected with the reducer
+ * base api can be editted in the config file
+*/
 export function authApi () {
   return apisauce.create({
     baseURL: serviceUrl + '/',

@@ -1,5 +1,4 @@
 import { publicApiQiscus } from './api'
-import { buildQuery } from '../config'
 
 export const login = (action) => {
   const axios = publicApiQiscus()

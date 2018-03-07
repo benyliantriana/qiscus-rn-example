@@ -1,4 +1,4 @@
-import { buildAction, typeReq, typeTemp } from '../config'
+import { buildAction, typeReq } from '../config'
 
 export const USER_LOGIN = 'USER_LOGIN'
 export const USER_LOGOUT = 'USER_LOGOUT'

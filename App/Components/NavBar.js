@@ -1,13 +1,14 @@
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Actions } from 'react-native-router-flux'
+import { Colors } from '../Themes'
 
 const styles = StyleSheet.create({
   container: {
     height: (Platform.OS === 'ios') ? 64 : 54,
     flexDirection: 'row',
     paddingTop: 20,
-    backgroundColor: 'red',
+    backgroundColor: Colors.background
   },
   navBarItem: {
     flex: 1,
