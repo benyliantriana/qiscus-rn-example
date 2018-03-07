@@ -11,7 +11,8 @@ export default class TextInputLogin extends React.Component {
     this.state = {
       label: this.props.label,
       error: this.props.errorState,
-      stateInput: 0 // 0 for default, 1 for focus
+      stateInput: 0, // 0 for default, 1 for focus
+      secureTextEntry: this.props.secureTextEntry
     }
   }
 
@@ -23,13 +24,15 @@ export default class TextInputLogin extends React.Component {
     label: PropTypes.string,
     error: PropTypes.bool,
     keyboardType: PropTypes.string,
-    onChangeText: PropTypes.func
+    onChangeText: PropTypes.func,
+    secureTextEntry: PropTypes.bool
   }
 
   static defaultProps = {
     label: '',
     error: false,
-    keyboardType: 'default'
+    keyboardType: 'default',
+    secureTextEntry: false
   }
 
   onFocus () {
@@ -45,7 +48,7 @@ export default class TextInputLogin extends React.Component {
   }
 
   render () {
-    const { label, stateInput, error } = this.state
+    const { label, stateInput, error, secureTextEntry } = this.state
     let color
     if (error) {
       color = Colors.red
@@ -72,6 +75,7 @@ export default class TextInputLogin extends React.Component {
             <TextInput
               ref={label}
               placeholder={label}
+              secureTextEntry={secureTextEntry}
               underlineColorAndroid='transparent'
               style={styles.input}
               onFocus={() => this.onFocus()}
