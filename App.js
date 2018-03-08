@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Provider } from 'react-redux'
 import Navigation from './App/Navigation/Navigation'
 import { View } from 'react-native'
-import { store } from './App/store'
 import { Font } from 'expo'
 
 /**
@@ -56,11 +54,9 @@ class App extends Component {
 
   render () {
     return (
-      <Provider store={store}>
-        <View style={{ flex: 1 }}>
-          {this.renderNavigation()}
-        </View>
-      </Provider>
+      <View style={{ flex: 1 }}>
+        {this.renderNavigation()}
+      </View>
     )
   }
 }

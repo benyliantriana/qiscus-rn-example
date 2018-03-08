@@ -9,7 +9,6 @@ import {
   AsyncStorage
 } from 'react-native'
 import { Actions, ActionConst } from 'react-native-router-flux'
-import { connect } from 'react-redux'
 import { Images, Dictionary } from '../Themes'
 import qiscus from '../../libs/SDKCore'
 
@@ -155,16 +154,4 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  // variable reducer
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  // function action to change the state redux
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login

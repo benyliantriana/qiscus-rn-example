@@ -4,6 +4,10 @@
     "androidStatusBar": {
       "backgroundColor": "#ffffff",
       "barStyle": "dark-content"
-    }
+    },
+    "android": {
+      "package": "com.qiscus.qiscusrn"
+    },
+    "icon": "./App/Images/app-icon.png"
   }
 }
