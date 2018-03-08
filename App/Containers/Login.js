@@ -5,7 +5,8 @@ import {
   Image,
   ImageBackground,
   ScrollView,
-  ToastAndroid
+  ToastAndroid,
+  AsyncStorage
 } from 'react-native'
 import { Actions, ActionConst } from 'react-native-router-flux'
 import { connect } from 'react-redux'
@@ -107,8 +108,8 @@ class Login extends React.Component {
       qiscus.init({
         AppId: 'sdksample',
         options: {
-          loginSuccessCallback: this.successLogin.bind(this), // if login / register is success
-          loginErrorCallback: this.errorLogin.bind(this) // if login / register is failed
+          loginSuccessCallback: (data) => this.successLogin(data), // if login / register is success
+          loginErrorCallback: (data) => this.errorLogin(data) // if login / register is failed
         }
       })
       this.setState({ loading: true }) // set the button to loading state
@@ -116,15 +117,17 @@ class Login extends React.Component {
     }
   }
 
-  successLogin () {
+  successLogin (data) {
     Actions.app({
-      type: ActionConst.PUSH
+      type: ActionConst.RESET, // reset the navigator to ListChat container
+      photo: data.results.user.avatar_url
     })
-    this.setState({ loading: false })
+    AsyncStorage.setItem('token', data.results.user.token)
   }
 
-  errorLogin () {
-    ToastAndroid.show(I18n.t('loginFailed'), ToastAndroid.SHORT)
+  errorLogin (data) {
+    const tempData = JSON.parse(data)
+    ToastAndroid.show(tempData.error.message, ToastAndroid.SHORT)
     this.setState({ loading: false })
   }
 

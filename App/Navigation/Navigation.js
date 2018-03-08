@@ -30,7 +30,7 @@ const reducerCreate = params => {
 }
 
 /**
- * key is the variable we used to call the container (can be pop / push)
+ * key is the variable we used to call the container (can be pop, push, reset, etc)
  * title shown in the middle of the header
  * component is the where we set the container
  */

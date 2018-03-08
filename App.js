@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import Navigation from './App/Navigation/Navigation'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { store } from './App/store'
 import { Font } from 'expo'
 
 /**
- * Provides an entry point into our application.  Both index.ios.js and index.android.js
+ * Provides an entry point into our application
  * call this component first.
  *
  * We create our Redux store here, put it into a provider and then bring in our
@@ -21,6 +21,9 @@ class App extends Component {
     }
   }
   async componentDidMount () {
+    /**
+     * Load the fonts before the load navigation
+     */
     await Font.loadAsync({
       'bold': require('./assets/fonts/OpenSans-Bold.ttf'),
       'boldItalic': require('./assets/fonts/OpenSans-BoldItalic.ttf'),
@@ -39,6 +42,9 @@ class App extends Component {
   }
 
   renderNavigation () {
+    /**
+     * navigation is rendered after the font fully loaded
+    */
     const { fontLoaded } = this.state
     if (fontLoaded) {
       return (
