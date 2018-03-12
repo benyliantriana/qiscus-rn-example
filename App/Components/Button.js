@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import styles from './Styles/ButtonStyles'
 
-export default class TextInputLogin extends React.Component {
+export default class Button extends React.Component {
   constructor (props) {
     super(props)
     this.state = {

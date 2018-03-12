@@ -3,7 +3,6 @@ import { Colors } from '../../Themes'
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row'
   },
   buttonFull: {

@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
 import Navigation from './App/Navigation/Navigation'
-import { View } from 'react-native'
+import { View, ActivityIndicator } from 'react-native'
 import { Font } from 'expo'
+import { Colors } from './App/Themes'
 
-/**
- * Provides an entry point into our application
- * call this component first.
- *
- * We create our Redux store here, put it into a provider and then bring in our
- * Navigation.
- *
- */
 class App extends Component {
   constructor (props) {
     super(props)
@@ -49,7 +42,11 @@ class App extends Component {
         <Navigation />
       )
     }
-    return null
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator size='large' color={Colors.green} />
+      </View>
+    )
   }
 
   render () {

@@ -1,5 +1,6 @@
 import Button from './Button'
-import NavBar from './NavBar'
 import TextInputLogin from './TextInputLogin'
+import Header from './Header'
+import EmptyState from './EmptyState'
 
-export { Button, NavBar, TextInputLogin }
+export { Button, TextInputLogin, Header, EmptyState }

@@ -8,6 +8,7 @@ import {
   ToastAndroid,
   AsyncStorage
 } from 'react-native'
+
 import { Actions, ActionConst } from 'react-native-router-flux'
 import { Images, Dictionary } from '../Themes'
 import qiscus from '../../libs/SDKCore'
@@ -85,7 +86,7 @@ class Login extends React.Component {
    */
 
   /**
-    * valid user is
+    * valid user to test is
     * const userAuth = {
       email: 'fikri@qiscus.com',
       password: 'password1',
@@ -116,8 +117,8 @@ class Login extends React.Component {
     }
   }
 
-  successLogin (data) {
-    Actions.app({
+  async successLogin (data) {
+    Actions.chatlist({
       type: ActionConst.RESET, // reset the navigator to ListChat container
       photo: data.results.user.avatar_url
     })
