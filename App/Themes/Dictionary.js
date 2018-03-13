@@ -15,6 +15,7 @@ export default {
     descriptionEmptyRoom: "You don't have any conversation.\nLet's send a message to your contact",
     startChat: 'START CHAT',
     emptyChat: 'Send a message!',
-    descriptionEmptyChat: 'Great discussion start from greeting\neach others first'
+    descriptionEmptyChat: 'Great discussion start from greeting\neach others first',
+    placeholdermessage: 'Type your message'
   }
 }

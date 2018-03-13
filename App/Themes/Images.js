@@ -10,7 +10,9 @@ const images = {
   profile: require('../Images/profile.png'),
   search: require('../Images/search.png'),
   emptyRoom: require('../Images/empty-room.png'),
-  emptyChat: require('../Images/empty-chat.png')
+  emptyChat: require('../Images/empty-chat.png'),
+  attach: require('../Images/attach.png'),
+  send: require('../Images/send.png')
 }
 
 export default images

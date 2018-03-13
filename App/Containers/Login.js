@@ -120,7 +120,8 @@ class Login extends React.Component {
   async successLogin (data) {
     Actions.chatlist({
       type: ActionConst.RESET, // reset the navigator to ListChat container
-      photo: data.results.user.avatar_url
+      photo: data.results.user.avatar_url,
+      email: this.state.email
     })
     AsyncStorage.setItem('token', data.results.user.token)
   }

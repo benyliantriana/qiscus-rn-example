@@ -9,6 +9,7 @@ import {
   Image
 } from 'react-native'
 import moment from 'moment'
+import { Actions, ActionConst } from 'react-native-router-flux'
 import qiscus from '../../libs/SDKCore'
 
 // import { Actions, ActionConst } from 'react-native-router-flux'
@@ -18,7 +19,7 @@ import { Images, Dictionary, Colors } from '../Themes'
 /**
  * import component
  */
-import { Header, EmptyState } from '../Components'
+import { Header, EmptyState, ListRoom } from '../Components'
 
 import styles from './Styles/ChatListStyles'
 
@@ -30,6 +31,8 @@ class ChatList extends React.Component {
     this.state = {
       loading: true,
       data: [],
+      email: this.props.email,
+      photo: this.props.photo
     }
   }
 
@@ -67,23 +70,29 @@ class ChatList extends React.Component {
       date = moment(item.last_comment.unix_timestamp * 1000).format('DD/MM/YY')
     }
     return (
-      <TouchableOpacity style={styles.itemContainer} activeOpacity={0.9}>
-        <Image source={{ uri: item.avatar_url }} style={styles.photo} />
-        <View style={styles.item}>
-          <View style={{ flexDirection: 'column', flex: 1, marginRight: 15 }}>
-            <Text style={styles.textName}>{item.room_name}</Text>
-            <Text style={styles.textMessage}>{item.last_comment.message}</Text>
-          </View>
-          <View>
-            <Text style={styles.textMessage}>{date}</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
+      <ListRoom
+        unreadCount={item.unread_count}
+        avatar={item.avatar_url}
+        name={item.room_name}
+        lastMessage={item.last_comment.message}
+        date={date}
+        onPress={() => this.detailChat(item.id_str, item.room_name, item.chat_type)}
+      />
     )
   }
 
+  detailChat (id, name, typeRoom) {
+    Actions.chatroom({
+      type: ActionConst.PUSH,
+      id: id,
+      roomName: name,
+      email: this.state.email,
+      typeRoom: typeRoom
+    })
+  }
+
   render () {
-    const { data, loading } = this.state
+    const { data, loading, photo } = this.state
     let view
     if (loading) {
       view = (
@@ -96,7 +105,7 @@ class ChatList extends React.Component {
       <View style={styles.container}>
         <Header
           title={I18n.t('conversations')}
-          leftButtonImage={Images.profile}
+          leftButtonImage={photo}
           onLeftPress={() => this.profile()}
           showRightButton
           isLoading={loading}

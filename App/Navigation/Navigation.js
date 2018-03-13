@@ -12,6 +12,7 @@ import {
 
 import Login from '../Containers/Login'
 import ChatList from '../Containers/ChatList'
+import ChatRoom from '../Containers/ChatRoom'
 import App from '../Containers/App'
 
 /**
@@ -39,6 +40,12 @@ const Navigation = () => (
         title=''
         hideNavBar
         component={ChatList}
+      />
+      <Scene
+        key='chatroom'
+        title=''
+        hideNavBar
+        component={ChatRoom}
       />
       <Scene
         key='app'

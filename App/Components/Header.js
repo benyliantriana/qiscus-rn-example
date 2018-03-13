@@ -32,10 +32,8 @@ export default class Header extends React.Component {
    */
 
   static propTypes = {
-    leftButtonImage: PropTypes.number,
     title: PropTypes.string,
     showRightButton: PropTypes.bool,
-    rightButtonImage: PropTypes.number,
     onLeftPress: PropTypes.func,
     onRightPress: PropTypes.func,
     isLoading: PropTypes.bool,
@@ -54,10 +52,21 @@ export default class Header extends React.Component {
   }
 
   renderLeft () {
+    let image, roundImage
+    if (this.props.leftButtonImage === undefined) {
+      image = Images.back
+    } else {
+      if (String(this.props.leftButtonImage).includes('http')) {
+        image = { uri: this.props.leftButtonImage }
+        roundImage = { borderRadius: 160, resizeMode: 'cover' }
+      } else {
+        image = this.state.leftButtonImage
+      }
+    }
     return (
       <View style={styles.leftContainer}>
         <TouchableOpacity onPress={() => this.props.onLeftPress()}>
-          <Image source={this.props.leftButtonImage} style={styles.imageLeft} />
+          <Image source={image} style={[styles.imageLeft, roundImage]} />
         </TouchableOpacity>
       </View>
     )
@@ -105,10 +114,22 @@ export default class Header extends React.Component {
 
   renderRight () {
     let content
+    let image
+    let roundImage
+    if (this.props.rightButtonImage === undefined) {
+      image = Images.nextArrow
+    } else {
+      if (String(this.props.rightButtonImage).includes('http')) {
+        image = { uri: this.props.rightButtonImage }
+        roundImage = { borderRadius: 160, resizeMode: 'cover' }
+      } else {
+        image = this.state.rightButtonImage
+      }
+    }
     if (this.props.showRightButton) {
       content = (
         <TouchableOpacity onPress={() => this.props.onRightPress()}>
-          <Image source={this.props.rightButtonImage} style={styles.imageLeft} />
+          <Image source={image} style={[styles.imageLeft, roundImage]} />
         </TouchableOpacity>
       )
     } else {
