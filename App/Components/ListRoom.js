@@ -6,9 +6,31 @@ import {
   Image
 } from 'react-native'
 
+import PropTypes from 'prop-types'
+
 import styles from './Styles/ListRoomStyles'
 
 export default class ListRoom extends React.PureComponent {
+  constructor (props) {
+    super(props)
+    this.state = {
+      unreadCount: this.props.unreadCount,
+      avatar: this.props.avatar,
+      name: this.props.name,
+      lastMessage: this.props.lastMessage,
+      date: this.props.date
+    }
+  }
+
+  static propTypes = {
+    unreadCount: PropTypes.number,
+    avatar: PropTypes.string,
+    name: PropTypes.string,
+    lastMessage: PropTypes.string,
+    date: PropTypes.string,
+    onPress: PropTypes.func
+  }
+
   render () {
     let viewUnread
     if (this.props.unreadCount > 0) {

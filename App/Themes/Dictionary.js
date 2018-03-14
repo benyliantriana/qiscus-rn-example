@@ -16,6 +16,8 @@ export default {
     startChat: 'START CHAT',
     emptyChat: 'Send a message!',
     descriptionEmptyChat: 'Great discussion start from greeting\neach others first',
-    placeholdermessage: 'Type your message'
+    placeholdermessage: 'Type your message',
+    isFailed: 'message failed to send, ',
+    retry: 'Retry'
   }
 }

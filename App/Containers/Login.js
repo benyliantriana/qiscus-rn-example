@@ -118,9 +118,9 @@ class Login extends React.Component {
   }
 
   async successLogin (data) {
-    Actions.chatlist({
+    Actions.chatroom({
       type: ActionConst.RESET, // reset the navigator to ListChat container
-      photo: data.results.user.avatar_url,
+      photo: data.results.user.avatar_url, // passing params to chat room container
       email: this.state.email
     })
     AsyncStorage.setItem('token', data.results.user.token)

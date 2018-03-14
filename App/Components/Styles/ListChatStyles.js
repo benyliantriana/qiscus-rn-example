@@ -43,5 +43,37 @@ export default StyleSheet.create({
     resizeMode: 'cover',
     marginRight: 10,
     marginTop: 20
+  },
+  statusRead: {
+    height: 12,
+    width: 16,
+    resizeMode: 'contain'
+  },
+  statusDelivered: {
+    height: 9,
+    width: 12,
+    resizeMode: 'contain'
+  },
+  statusPending: {
+    height: 12,
+    width: 12,
+    resizeMode: 'contain'
+  },
+  imageStatusContainer: {
+    alignContent: 'flex-end',
+    justifyContent: 'flex-end',
+    marginTop: 2,
+    flexDirection: 'row'
+  },
+  statusFailed: {
+    height: 9,
+    width: 12,
+    resizeMode: 'contain'
+  },
+  textFailed: {
+    fontFamily: 'regular',
+    fontSize: 12,
+    lineHeight: 15,
+    color: Colors.red
   }
 })

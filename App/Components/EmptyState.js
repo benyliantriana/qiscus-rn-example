@@ -13,7 +13,7 @@ export default class EmptyState extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      type: this.props.type, // room => empty state for room list, chat => empty state for chat
+      type: this.props.type, // 'room' => empty state for room list, 'chat' => empty state for chat
       showButton: this.props.showButton // show button for start chat (open contact)
     }
   }
