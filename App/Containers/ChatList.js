@@ -8,7 +8,9 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
-  ScrollView
+  ScrollView,
+  Modal,
+  TouchableWithoutFeedback
 } from 'react-native'
 import moment from 'moment'
 
@@ -36,7 +38,9 @@ class ChatList extends React.Component {
       type: this.props.typeRoom,
       lastMessageDate: '2018-03-08',
       message: '',
-      photo: Images.profile
+      photo: Images.profile,
+      messageOption: false,
+      selectedMessage: ''
     }
   }
 
@@ -176,10 +180,6 @@ class ChatList extends React.Component {
     )
   }
 
-  openMessageOption (message) {
-    ToastAndroid.show(message, ToastAndroid.SHORT)
-  }
-
   renderInput () {
     const { message } = this.state
     return (
@@ -214,6 +214,49 @@ class ChatList extends React.Component {
     )
   }
 
+  renderModalOptionMessage () {
+    const { messageOption } = this.state
+    return (
+      <Modal
+        animationType={'fade'}
+        transparent
+        visible={messageOption}
+        onRequestClose={() => this.setState({ messageOption: false })}
+      >
+        <TouchableWithoutFeedback onPress={() => this.setState({ messageOption: false })}>
+          <View style={styles.modalContainer}>
+            <View style={{ flex: 1 }} />
+            <View style={styles.optionContainer}>
+              {this.renderMenu(Images.reply, I18n.t('reply'))}
+              {this.renderMenu(Images.forward, I18n.t('forward'))}
+              {this.renderMenu(Images.copy, I18n.t('copy'))}
+              <View style={styles.border} />
+              {this.renderMenu(Images.cancel, I18n.t('cancel'))}
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    )
+  }
+
+  renderMenu (images, label) {
+    const newStyle = label === I18n.t('cancel') ? { color: Colors.red } : {}
+    return (
+      <TouchableOpacity style={styles.menuContainer}>
+        <Image source={images} style={styles.iconMenu} />
+        <Text style={[styles.textMenu, newStyle]}>{label}</Text>
+      </TouchableOpacity>
+    )
+  }
+
+  openMessageOption (message) {
+    this.setState({
+      messageOption: true,
+      selectedMessage: message
+    })
+  }
+
+
   render () {
     const { data, loading, photo } = this.state
     let view, renderDate
@@ -236,6 +279,7 @@ class ChatList extends React.Component {
         />
         {renderDate}
         {view}
+        {this.renderModalOptionMessage()}
       </View>
     )
   }

@@ -18,6 +18,10 @@ export default {
     descriptionEmptyChat: 'Great discussion start from greeting\neach others first',
     placeholdermessage: 'Type your message',
     isFailed: 'message failed to send, ',
-    retry: 'Retry'
+    retry: 'Retry',
+    reply: 'Reply',
+    forward: 'Forward',
+    copy: 'Copy',
+    cancel: 'Cancel'
   }
 }

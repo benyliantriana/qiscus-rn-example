@@ -16,7 +16,11 @@ const images = {
   isRead: require('../Images/isRead.png'),
   isDelivered: require('../Images/isDelivered.png'),
   isPending: require('../Images/isPending.png'),
-  isFailed: require('../Images/isFailed.png')
+  isFailed: require('../Images/isFailed.png'),
+  reply: require('../Images/reply.png'),
+  forward: require('../Images/forward.png'),
+  copy: require('../Images/copy.png'),
+  cancel: require('../Images/cancel.png')
 }
 
 export default images
