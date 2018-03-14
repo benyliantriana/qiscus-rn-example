@@ -141,9 +141,9 @@ class ChatRoom extends React.Component {
   renderitem = ({ item, index }) => {
     const { data } = this.state
     let isFirst
-    if (index === 0) {
+    if (index === data.length - 1) {
       isFirst = true
-    } else if (data[index].username_real === data[index - 1].username_real) {
+    } else if (data[index].username_real === data[index + 1].username_real) {
       isFirst = false
     } else {
       isFirst = true
@@ -196,13 +196,14 @@ class ChatRoom extends React.Component {
 
   render () {
     const { data, loading, photo } = this.state
-    let view
+    let view, renderDate
     if (loading) {
       view = (
         <View />
       )
     } else {
       view = data.length > 1 ? this.renderList() : <EmptyState type='chat' />
+      renderDate = data.length > 1 ? this.renderDate() : null
     }
     return (
       <View style={styles.container}>
@@ -213,7 +214,7 @@ class ChatRoom extends React.Component {
           rightButtonImage={photo}
           onRightPress={() => this.profile()}
         />
-        {this.renderDate()}
+        {renderDate}
         {view}
       </View>
     )

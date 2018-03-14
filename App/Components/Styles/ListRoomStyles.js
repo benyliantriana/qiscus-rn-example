@@ -36,7 +36,19 @@ export default StyleSheet.create({
     color: Colors.label
   },
   unreadContainer: {
-    flexDirection: 'column',
-    paddingBottom: 15
+    marginTop: 3,
+    backgroundColor: Colors.green,
+    minWidth: 18,
+    minHeight: 18,
+    borderRadius: 9,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textUnread: {
+    fontFamily: 'regular',
+    fontSize: 11,
+    lineHeight: 14,
+    color: Colors.background
   }
 })
