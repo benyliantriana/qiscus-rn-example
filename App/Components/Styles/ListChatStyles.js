@@ -75,5 +75,11 @@ export default StyleSheet.create({
     fontSize: 12,
     lineHeight: 15,
     color: Colors.red
+  },
+  imageMessage: {
+    minHeight: 0.20 * Dimensions.get('window').height,
+    minWidth: 0.45 * Dimensions.get('window').width,
+    borderRadius: 6,
+    margin: -4
   }
 })

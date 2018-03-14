@@ -9,7 +9,8 @@ const colors = {
   border: '#E8E8E8',
   greyBackground: '#E0E0E0',
   lightGrey: '#FAFAFA',
-  backgroundModal: 'rgba(0, 0, 0, 0.35)'
+  backgroundModal: 'rgba(0, 0, 0, 0.35)',
+  blue: '#1594b9'
 }
 
 export default colors

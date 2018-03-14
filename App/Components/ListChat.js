@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image
+  Image,
+  Linking
 } from 'react-native'
 
 import PropTypes from 'prop-types'
@@ -63,6 +64,32 @@ export default class ListChat extends React.PureComponent {
       return <Image source={Images.isFailed} style={styles.statusFailed} />
     }
   }
+  
+  renderMessage (message) {
+    let extImage = ['jpg','gif','jpeg','png', 'JPG', 'GIF', 'JPEG', 'PNG']
+    let messageImage
+    let isImage = extImage.find((data) => message.includes(data))
+    if (isImage) {
+      messageImage = message.substring(6, message.length-7).trim()
+      return <Image style={styles.imageMessage} source={{ uri: messageImage }} />
+    } else if (message.includes('[file]')) {
+      messageImage = message.substring(6, message.length-7).trim()
+      return (
+        <TouchableOpacity
+          onPress={() =>
+            Linking
+              .openURL(messageImage)
+              .catch(err => console.error('An error occurred', err))
+          }>
+          <Text style={[styles.textMessage, { color: Colors.blue, textDecorationLine: 'underline' }]}>
+            {messageImage}
+          </Text>
+        </TouchableOpacity>
+      )
+    } else {
+      return <Text style={styles.textMessage}>{message}</Text>
+    }
+  }
 
   renderMessageRetry () {
     const { isFailed } = this.state
@@ -113,7 +140,7 @@ export default class ListChat extends React.PureComponent {
               activeOpacity={0.8}
               onLongPress={() => this.props.onLongPress()}
             >
-              <Text style={styles.textMessage}>{this.props.message}</Text>
+            {this.renderMessage(this.props.message)}
             </TouchableOpacity>
           </View>
           {this.renderMessageRetry()}
@@ -131,7 +158,7 @@ export default class ListChat extends React.PureComponent {
                 activeOpacity={0.8}
                 onLongPress={() => this.props.onLongPress()}
               >
-                <Text style={styles.textMessage}>{this.props.message}</Text>
+                {this.renderMessage(this.props.message)}
               </TouchableOpacity>
               <View style={[styles.statusContainer, { marginLeft: 5 }]}>
                 <Text style={styles.textDate}>{this.props.time}</Text>

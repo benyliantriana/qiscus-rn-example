@@ -75,38 +75,6 @@ class ChatList extends React.Component {
     })
   }
 
-  loadmore () {
-    // const { data } = this.state
-    // const temp = {
-    //   "attachment": null,
-    //   "avatar": "https://res.cloudinary.com/qiscus/image/upload/v1507272514/kiwari-prod_user_id_340/uvwlno1qkkgh9xwwjzgq.png",
-    //   "before_id": 1618573,
-    //   "date": "2018-03-08",
-    //   "id": 1618608 + data.length,
-    //   "isDelivered": true,
-    //   "isFailed": false,
-    //   "isPending": false,
-    //   "isRead": true,
-    //   "isSent": true,
-    //   "is_deleted": false,
-    //   "message": "again",
-    //   "payload": null,
-    //   "status": "read",
-    //   "subtype": null,
-    //   "time": "15:49 PM",
-    //   "timestamp": "2018-03-08T08:49:14Z",
-    //   "type": "text",
-    //   "unique_id": "bq1520498953369",
-    //   "username_as": "Qiscus Demo",
-    //   "username_real": "guest@qiscus.com",
-    // }
-    // let tempData = [...data]
-    // tempData.push(temp)
-    // this.setState({
-    //   data: tempData      
-    // })
-  }
-
   /**
    * to view date when last message received
    */
@@ -131,22 +99,19 @@ class ChatList extends React.Component {
 
   renderList () {
     return (
-      <View style={{ flex: 1 }}>
-        <FlatList
-          ref={ref => this.scrollView = ref}
-          style={{ flex: 1 }}
-          contentContainerStyle={{ padding: 8, paddingBottom: 12 }}
-          data={this.state.data}
-          renderItem={this.renderitem}
-          keyExtractor={item => item.id}
-          inverted // to show data from last index -> first index
-          onEndReached={this.loadmore.bind(this)}
-          onEndReachedThreshold={0.1}
-          keyboardShouldPersistTaps='always'
-          showsVerticalScrollIndicator={false}
-        />
-        {this.renderInput()}
-    </View>
+      <FlatList
+        ref={ref => this.scrollView = ref}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ padding: 8, paddingBottom: 12 }}
+        data={this.state.data}
+        renderItem={this.renderitem}
+        keyExtractor={item => item.id}
+        inverted // to show data from last index -> first index
+        onEndReached={this.loadmore.bind(this)}
+        onEndReachedThreshold={0.1}
+        keyboardShouldPersistTaps='always'
+        showsVerticalScrollIndicator={false}
+      />
     )
   }
 
@@ -196,7 +161,7 @@ class ChatList extends React.Component {
               placeholder={I18n.t('placeholdermessage')}
               underlineColorAndroid='transparent'
               style={styles.input}
-              value={this.props.value}
+              value={message}
               onChangeText={(text) => this.setState({ message: text })}
               autoCapitalize='none'
               autoCorrect={false}
@@ -205,7 +170,7 @@ class ChatList extends React.Component {
           </View>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={() => {}}
+            onPress={() => this.sendMessage()}
           >
             <Image source={Images.send} style={styles.imageButton} />
           </TouchableOpacity>
@@ -256,17 +221,55 @@ class ChatList extends React.Component {
     })
   }
 
+  loadmore () {
+    // load previous data
+  }
+
+  sendMessage () {
+    const { data, message } = this.state
+    const temp = {
+      "attachment": null,
+      "avatar": "https://res.cloudinary.com/qiscus/image/upload/v1507272514/kiwari-prod_user_id_340/uvwlno1qkkgh9xwwjzgq.png",
+      "before_id": 1618573 + data.length,
+      "date": "2018-03-08",
+      "id": 1618608 + data.length,
+      "isDelivered": true,
+      "isFailed": false,
+      "isPending": false,
+      "isRead": true,
+      "isSent": true,
+      "is_deleted": false,
+      "message": message,
+      "payload": null,
+      "status": "read",
+      "subtype": null,
+      "time": "15:49 PM",
+      "timestamp": "2018-03-08T08:49:14Z",
+      "type": "text",
+      "unique_id": "bq1520498953369",
+      "username_as": "Fikri",
+      "username_real": "fikri@qiscus.com",
+    }
+    let tempData = [...data]
+    tempData.unshift(temp)
+    this.setState({
+      data: tempData ,
+      message: ''     
+    })
+  }
+
 
   render () {
     const { data, loading, photo } = this.state
-    let view, renderDate
+    let view, renderDate, renderInput
     if (loading) {
       view = (
         <View />
       )
     } else {
-      view = data.length > 1 ? this.renderList() : <EmptyState type='chat' />
-      renderDate = data.length > 1 ? this.renderDate() : null
+      view = data.length > 0 ? this.renderList() : <EmptyState type='chat' />
+      renderDate = data.length > 0 ? this.renderDate() : null
+      renderInput = this.renderInput()
     }
     return (
       <View style={styles.container}>
@@ -279,6 +282,7 @@ class ChatList extends React.Component {
         />
         {renderDate}
         {view}
+        {renderInput}
         {this.renderModalOptionMessage()}
       </View>
     )

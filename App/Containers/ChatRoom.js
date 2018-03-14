@@ -35,10 +35,11 @@ class ChatRoom extends React.Component {
   }
 
   componentWillMount () {
-    qiscus.userAdapter.loadRoomList().then(data => this.setState({
-      data: data,
-      loading: false
-    }))
+    qiscus.userAdapter.loadRoomList().then(data =>
+      this.setState({
+        data: data,
+        loading: false
+      }))
   }
 
   profile () {

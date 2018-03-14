@@ -9,6 +9,11 @@ import {
 import PropTypes from 'prop-types'
 
 import styles from './Styles/ListRoomStyles'
+import I18n from 'react-native-i18n'
+
+import { Dictionary } from '../Themes'
+
+I18n.translations = Dictionary
 
 export default class ListRoom extends React.PureComponent {
   constructor (props) {
@@ -32,7 +37,7 @@ export default class ListRoom extends React.PureComponent {
   }
 
   render () {
-    let viewUnread
+    let viewUnread, lastMessage
     if (this.props.unreadCount > 0) {
       viewUnread = (
         <View style={styles.unreadContainer}>
@@ -46,6 +51,17 @@ export default class ListRoom extends React.PureComponent {
         </View>
       )
     }
+
+    let extImage = ['jpg','gif','jpeg','png', 'JPG', 'GIF', 'JPEG', 'PNG']
+    let isImage = extImage.find((data) => this.props.lastMessage.includes(data))
+    if (isImage) {
+      lastMessage = I18n.t('image')
+    } else if (this.props.lastMessage.includes('[file]')) {
+      lastMessage = I18n.t('link')
+    } else {
+      lastMessage = this.props.lastMessage
+    }
+    
     return (
       <TouchableOpacity
         style={styles.itemContainer}
@@ -56,7 +72,7 @@ export default class ListRoom extends React.PureComponent {
         <View style={styles.item}>
           <View style={{ flexDirection: 'column', flex: 1, marginRight: 15 }}>
             <Text style={styles.textName}>{this.props.name}</Text>
-            <Text style={styles.textMessage}>{this.props.lastMessage}</Text>
+            <Text style={styles.textMessage}>{lastMessage}</Text>
           </View>
           <View>
             <Text style={styles.textMessage}>{this.props.date}</Text>

@@ -22,6 +22,8 @@ export default {
     reply: 'Reply',
     forward: 'Forward',
     copy: 'Copy',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    image: 'image',
+    link: 'link'
   }
 }
