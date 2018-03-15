@@ -40,7 +40,6 @@ export default StyleSheet.create({
     height: 30,
     width: 30,
     borderRadius: 15,
-    resizeMode: 'cover',
     marginRight: 10,
     marginTop: 20
   },
@@ -79,7 +78,6 @@ export default StyleSheet.create({
   imageMessage: {
     minHeight: 0.20 * Dimensions.get('window').height,
     minWidth: 0.45 * Dimensions.get('window').width,
-    borderRadius: 6,
     margin: -4
   }
 })

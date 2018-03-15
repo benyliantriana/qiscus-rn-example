@@ -29,7 +29,8 @@ class Login extends React.Component {
       email: 'fikri@qiscus.com',
       displayName: 'Fikri',
       key: 'password',
-      loading: false
+      loading: false,
+      newMessage: []
     }
   }
 
@@ -109,7 +110,11 @@ class Login extends React.Component {
         AppId: 'sdksample',
         options: {
           loginSuccessCallback: (data) => this.successLogin(data), // if login / register is success
-          loginErrorCallback: (data) => this.errorLogin(data) // if login / register is failed
+          loginErrorCallback: (data) => this.errorLogin(data), // if login / register is failed
+          newMessagesCallback: (comments) => {
+            // console.warn(comments)
+            this.setState({ newMessage: comments })
+          }
         }
       })
       this.setState({ loading: true }) // set the button to loading state
@@ -121,7 +126,8 @@ class Login extends React.Component {
     Actions.chatroom({
       type: ActionConst.RESET, // reset the navigator to ListChat container
       photo: data.results.user.avatar_url, // passing params to chat room container
-      email: this.state.email
+      email: this.state.email,
+      qiscus: qiscus
     })
     AsyncStorage.setItem('token', data.results.user.token)
   }

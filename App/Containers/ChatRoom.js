@@ -11,7 +11,6 @@ import {
 import moment from 'moment'
 import { Actions, ActionConst } from 'react-native-router-flux'
 
-import qiscus from '../../libs/SDKCore'
 import { Images, Dictionary, Colors } from '../Themes'
 
 /**
@@ -30,9 +29,12 @@ class ChatRoom extends React.Component {
       loading: true,
       data: [],
       email: this.props.email, // receiving params from previous container
-      photo: this.props.photo
+      photo: this.props.photo,
+      callback: false
     }
   }
+
+  qiscus = this.props.qiscus
 
   componentWillMount () {
     qiscus.userAdapter.loadRoomList().then(data =>
@@ -40,6 +42,18 @@ class ChatRoom extends React.Component {
         data: data,
         loading: false
       }))
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.callback !== undefined) {
+      if (nextProps.callback !== this.state.callback) {
+        qiscus.userAdapter.loadRoomList().then(data =>
+          this.setState({
+            data: data,
+            callback: nextProps.callback
+          }))
+      }
+    }
   }
 
   profile () {
@@ -86,7 +100,9 @@ class ChatRoom extends React.Component {
       id: id,
       roomName: name,
       email: this.state.email,
-      typeRoom: typeRoom
+      typeRoom: typeRoom,
+      qiscus: qiscus,
+      callback: this.state.callback
     })
   }
 

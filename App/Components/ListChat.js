@@ -3,9 +3,12 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
+  Image as ImageReact,
   Linking
 } from 'react-native'
+
+import Image from 'react-native-image-progress'
+import Progress from 'react-native-progress/Circle'
 
 import PropTypes from 'prop-types'
 import I18n from 'react-native-i18n'
@@ -55,13 +58,13 @@ export default class ListChat extends React.PureComponent {
   renderSelfStatus () {
     const { isDelivered, isFailed, isPending, isRead, isSent } = this.props
     if (isRead) {
-      return <Image source={Images.isRead} style={styles.statusRead} />
+      return <ImageReact source={Images.isRead} style={styles.statusRead} />
     } else if (isDelivered) {
-      return <Image source={Images.isDelivered} style={styles.statusDelivered} />
+      return <ImageReact source={Images.isDelivered} style={styles.statusDelivered} />
     } else if (isPending) {
-      return <Image source={Images.isPending} style={styles.statusPending} />
+      return <ImageReact source={Images.isPending} style={styles.statusPending} />
     } else if (isFailed) {
-      return <Image source={Images.isFailed} style={styles.statusFailed} />
+      return <ImageReact source={Images.isFailed} style={styles.statusFailed} />
     }
   }
   
@@ -71,7 +74,15 @@ export default class ListChat extends React.PureComponent {
     let isImage = extImage.find((data) => message.includes(data))
     if (isImage) {
       messageImage = message.substring(6, message.length-7).trim()
-      return <Image style={styles.imageMessage} source={{ uri: messageImage }} />
+      return (
+        <Image
+          style={styles.imageMessage}
+          imageStyle={{ borderRadius: 6, resizeMode: 'cover' }}
+          source={{ uri: messageImage }}
+          indicator={Progress}
+          indicatorProps={{ color: Colors.green, size: 40 }}
+        />
+      )
     } else if (message.includes('[file]')) {
       messageImage = message.substring(6, message.length-7).trim()
       return (
@@ -116,7 +127,13 @@ export default class ListChat extends React.PureComponent {
           <Text style={styles.name}>{this.props.name}</Text>
         )
         renderPhoto = (
-          <Image source={{ uri: this.props.photo }} style={styles.photo} />
+          <Image
+            source={{ uri: this.props.photo }}
+            style={styles.photo}
+            imageStyle={{ borderRadius: 6, resizeMode: 'cover' }}
+            indicator={Progress}
+            indicatorProps={{ color: Colors.green, size: 10 }}
+          />
         )
       } else {
         renderPhoto = (

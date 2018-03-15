@@ -10,11 +10,12 @@ import {
   TextInput,
   ScrollView,
   Modal,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  BackHandler
 } from 'react-native'
 import moment from 'moment'
+import { Actions } from 'react-native-router-flux'
 
-import qiscus from '../../libs/SDKCore'
 import { Images, Dictionary, Colors } from '../Themes'
 
 /**
@@ -36,13 +37,20 @@ class ChatList extends React.Component {
       name: this.props.roomName,
       email: this.props.email,
       type: this.props.typeRoom,
-      lastMessageDate: '2018-03-08',
+      lastMessageDate: '',
       message: '',
       photo: Images.profile,
       messageOption: false,
-      selectedMessage: ''
+      selectedMessage: '',
+      lastCommentId: -1,
+      firstCommentId: -1,
+      loadmore: true,
+      callback: this.props.callback,
+      isActive: true
     }
   }
+
+  qiscus = this.props.qiscus
 
   /**
    * array chat is reversed, and flatlist will show it in reversed too
@@ -52,15 +60,57 @@ class ChatList extends React.Component {
    */
 
   componentWillMount () {
+    qiscus.init({
+      AppId: 'sdksample',
+      options: {
+        newMessagesCallback: (comments) => {
+          if (this.state.isActive) {
+            if (comments[0].room_id_str === this.state.id) {
+              const temp = {
+              "attachment": null,
+              "avatar": comments[0].user_avatar,
+              "before_id": comments[0].comment_before_id,
+              "date": comments[0].timestamp,
+              "id": comments[0].id,
+              "isDelivered": false,
+              "isFailed": false,
+              "isPending": false,
+              "isRead": false,
+              "isSent": false,
+              "is_deleted": false,
+              "message": comments[0].message,
+              "payload": null,
+              "status": "read",
+              "subtype": null,
+              "time": moment(comments[0].timestamp).format('hh:mm A'),
+              "timestamp": comments[0].timestamp,
+              "type": "text",
+              "unique_id": comments[0].unique_temp_id,
+              "username_as": comments[0].username,
+              "username_real": comments[0].email
+            }
+            let tempData = [...this.state.data]
+            tempData.unshift(temp)
+            this.setState({
+              data: tempData ,
+              message: '',
+              lastMessageDate: moment(comments[0].timestamp).format('YYYY-MM-DD')
+            })
+            }
+          }
+      }}
+    })
     qiscus.getRoomById(this.props.id).then(data => {
       try {
         const reversedData = data.comments.length > 0 ? [...data.comments].reverse() : []
         this.setState({
           data: reversedData,
           loading: false,
-          lastMessageDate: data.comments[0].timestamp,
+          lastMessageDate: reversedData[0].timestamp,
           type: this.props.typeRoom,
-          photo: data.avatar
+          photo: data.avatar,
+          lastCommentId: reversedData[reversedData.length - 1].id,
+          firstCommentId: reversedData[0].id
         })
       } catch (e) {
         this.setState({
@@ -75,19 +125,32 @@ class ChatList extends React.Component {
     })
   }
 
+  componentDidMount () {
+    BackHandler.addEventListener('hardwareBackPress', () => this.backAndroid())
+  }
+
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', () => this.backAndroid())
+  }
+
+  backAndroid () {
+    this.setState({
+      isActive: false
+    })
+    Actions.pop({ refresh: { callback: !this.state.callback } })
+    return true
+  }
+
   /**
    * to view date when last message received
    */
   renderDate () {
-    let day =  moment(this.state.lastMessageDate).format('dddd')
-    let dayDate =  moment(this.state.lastMessageDate).day()
-    let month = moment(this.state.lastMessageDate).format('MMMM')
-    let year = moment(this.state.lastMessageDate).year()
-    let time = day + ', ' + month + ' ' + dayDate + ', ' + year
     return (
       <View style={styles.dateContainer}>
         <View style={styles.date}>
-          <Text style={styles.textDate}>{time.toUpperCase()}</Text>
+          <Text style={styles.textDate}>
+            {String(moment(this.state.lastMessageDate).format('dddd, MMMM DD, YYYY').toUpperCase())}
+          </Text>
         </View>
       </View>
     )
@@ -162,7 +225,10 @@ class ChatList extends React.Component {
               underlineColorAndroid='transparent'
               style={styles.input}
               value={message}
-              onChangeText={(text) => this.setState({ message: text })}
+              onChangeText={(text) => {
+                if (text.length > 0) { qiscus.publishTyping(1) }
+                this.setState({ message: text })}
+              }
               autoCapitalize='none'
               autoCorrect={false}
               multiline
@@ -222,42 +288,42 @@ class ChatList extends React.Component {
   }
 
   loadmore () {
-    // load previous data
+    const { loadmore } = this.state
+    if (loadmore) {
+      options = {
+        limit: 10
+      }
+      qiscus.loadMore(this.state.lastCommentId, options = {})
+        .then(res => {
+          if (res.length > 0) {
+            const reversedData = res.length > 0 ? res.reverse() : []
+            let tempData = this.state.data.concat(reversedData)
+            this.setState({
+              data: tempData,
+              lastMessageDate: reversedData[0].timestamp,
+              lastCommentId: reversedData[reversedData.length - 1].id
+            })
+          } else {
+            this.setState({
+              loadmore: false
+            })
+          }
+        }, err => {
+          throw new Error(err)
+        })
+    }
   }
 
   sendMessage () {
-    const { data, message } = this.state
-    const temp = {
-      "attachment": null,
-      "avatar": "https://res.cloudinary.com/qiscus/image/upload/v1507272514/kiwari-prod_user_id_340/uvwlno1qkkgh9xwwjzgq.png",
-      "before_id": 1618573 + data.length,
-      "date": "2018-03-08",
-      "id": 1618608 + data.length,
-      "isDelivered": true,
-      "isFailed": false,
-      "isPending": false,
-      "isRead": true,
-      "isSent": true,
-      "is_deleted": false,
-      "message": message,
-      "payload": null,
-      "status": "read",
-      "subtype": null,
-      "time": "15:49 PM",
-      "timestamp": "2018-03-08T08:49:14Z",
-      "type": "text",
-      "unique_id": "bq1520498953369",
-      "username_as": "Fikri",
-      "username_real": "fikri@qiscus.com",
+    const { id, message, firstCommentId } = this.state
+    if (message.length > 0) {
+      qiscus.sendComment(id, message)
+      .then(() => {
+        this.setState({ message: '' })
+        qiscus.publishTyping(0)
+      })
     }
-    let tempData = [...data]
-    tempData.unshift(temp)
-    this.setState({
-      data: tempData ,
-      message: ''     
-    })
   }
-
 
   render () {
     const { data, loading, photo } = this.state
@@ -275,6 +341,7 @@ class ChatList extends React.Component {
       <View style={styles.container}>
         <Header
           title={this.state.name}
+          onLeftPress={() => this.backAndroid()}
           showRightButton
           isLoading={loading}
           rightButtonImage={photo}
