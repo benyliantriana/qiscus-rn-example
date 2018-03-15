@@ -11,7 +11,8 @@ import {
   ScrollView,
   Modal,
   TouchableWithoutFeedback,
-  BackHandler
+  BackHandler,
+  Clipboard
 } from 'react-native'
 import moment from 'moment'
 import { Actions } from 'react-native-router-flux'
@@ -86,7 +87,7 @@ class ChatList extends React.Component {
               "payload": comments[0].payload,
               "status": "read",
               "subtype": null,
-              "time": moment(comments[0].timestamp).format('hh:mm A'),
+              "time": moment(comments[0].timestamp).format('HH:mm A'),
               "timestamp": comments[0].timestamp,
               "type": "text",
               "unique_id": comments[0].unique_temp_id,
@@ -124,7 +125,7 @@ class ChatList extends React.Component {
         })
       }
     }, err => {
-      ToastAndroid.show(err)
+      ToastAndroid.show(err, ToastAndroid.SHORT)
     })
   }
 
@@ -208,13 +209,16 @@ class ChatList extends React.Component {
         isRead={item.isRead}
         isSent={item.isSent}
         onLongPress={() =>
-          this.setState({
-            messageOption: true,
-            idReply: item.id,
-            emailUserReplied: item.username_real,
-            nameUserReplied: item.username_as,
-            messageReply: item.message
-          })
+          {
+            const tempMessage = item.payload !== null ? item.payload.text : item.message
+            this.setState({
+              messageOption: true,
+              idReply: item.id,
+              emailUserReplied: item.username_real,
+              nameUserReplied: item.username_as,
+              messageReply: tempMessage
+            })
+          }
         }
       />
     )
@@ -331,11 +335,15 @@ class ChatList extends React.Component {
     )
   }
 
-  menuHandler (label) {
+  async menuHandler (label) {
     switch (label) {
       case I18n.t('reply'):
         this.setState({ messageOption: false, isReplying: true })
         break;
+      case I18n.t('copy'):
+        await Clipboard.setString(this.state.messageReply)
+        this.setState({ messageOption: false })
+        ToastAndroid.show(I18n.t('messageCopied'), ToastAndroid.SHORT)
       default:
         break;
     }

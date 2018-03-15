@@ -24,6 +24,8 @@ export default {
     copy: 'Copy',
     cancel: 'Cancel',
     image: 'image',
-    link: 'link'
+    link: 'link',
+    messageCopied: 'Message copied',
+    serverError: 'Server error'
   }
 }

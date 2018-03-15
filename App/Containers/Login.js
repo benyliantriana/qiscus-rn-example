@@ -133,9 +133,13 @@ class Login extends React.Component {
   }
 
   errorLogin (data) {
-    const tempData = JSON.parse(data)
-    ToastAndroid.show(tempData.error.message, ToastAndroid.SHORT)
-    this.setState({ loading: false })
+    try {
+      const tempData = JSON.parse(data)
+      ToastAndroid.show(tempData.error.message, ToastAndroid.SHORT)
+      this.setState({ loading: false })
+    } catch (e) {
+      ToastAndroid.show(I18n.t('serverError'), ToastAndroid.SHORT)
+    }
   }
 
   render () {

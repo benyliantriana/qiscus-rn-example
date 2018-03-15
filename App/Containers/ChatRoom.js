@@ -30,28 +30,37 @@ class ChatRoom extends React.Component {
       data: [],
       email: this.props.email, // receiving params from previous container
       photo: this.props.photo,
-      callback: false
+      callback: false,
+      isComponentActive: true
     }
   }
 
   qiscus = this.props.qiscus
 
   componentWillMount () {
-    qiscus.userAdapter.loadRoomList().then(data =>
-      this.setState({
-        data: data,
-        loading: false
-      }))
+    if (this.state.isComponentActive) {
+      qiscus.userAdapter.loadRoomList().then(data =>
+        this.setState({
+          data: data,
+          loading: false
+        }))
+    }
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.callback !== undefined) {
       if (nextProps.callback !== this.state.callback) {
         qiscus.userAdapter.loadRoomList().then(data =>
-          this.setState({
-            data: data,
-            callback: nextProps.callback
-          }))
+          {
+            if (data !== this.state.data) {
+              this.setState({
+                data: data,
+                callback: nextProps.callback,
+                isComponentActive: true
+              })
+            }
+          }
+        )
       }
     }
   }
@@ -99,6 +108,9 @@ class ChatRoom extends React.Component {
   }
 
   detailChat (id, name, typeRoom) {
+    this.setState({
+      isComponentActive: false
+    })
     Actions.chatlist({
       type: ActionConst.PUSH,
       id: id,
