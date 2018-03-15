@@ -137,6 +137,7 @@ export default class ListChat extends React.PureComponent {
 
   renderPayload () {
     if (this.props.payload !== null) {
+      if (this.props.payload.replied_comment_message === undefined) return null
       let messageReplied
       messageReplied = this.props.payload.replied_comment_message.replace(/\n/g, ' ')
       if (messageReplied.length > 50) {
