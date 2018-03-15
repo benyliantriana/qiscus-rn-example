@@ -34,7 +34,8 @@ export default class ListChat extends React.PureComponent {
       isFailed: this.props.isFailed,
       isPending: this.props.isPending,
       isRead: this.props.isRead,
-      isSent: this.props.isSent
+      isSent: this.props.isSent,
+      payload: this.props.payload
     }
   }
 
@@ -97,8 +98,25 @@ export default class ListChat extends React.PureComponent {
           </Text>
         </TouchableOpacity>
       )
+    } else if (message.includes('http')) {
+      return (
+        <TouchableOpacity
+          onPress={() =>
+            Linking
+              .openURL(message)
+              .catch(err => console.error('An error occurred', err))
+          }>
+          <Text style={[styles.textMessage, { color: Colors.blue, textDecorationLine: 'underline' }]}>
+            {message}
+          </Text>
+        </TouchableOpacity>
+      )
     } else {
-      return <Text style={styles.textMessage}>{message}</Text>
+      if (this.props.payload === null) {
+        return <Text style={styles.textMessage}>{message}</Text>
+      } else {
+        return <Text style={styles.textMessage}>{this.props.payload.text}</Text>
+      }
     }
   }
 
@@ -112,6 +130,30 @@ export default class ListChat extends React.PureComponent {
           <TouchableOpacity>
             <Text style={[styles.textFailed, { color: Colors.green }]}>{I18n.t('retry')}</Text>
           </TouchableOpacity>
+        </View>
+      )
+    }
+  }
+
+  renderPayload () {
+    if (this.props.payload !== null) {
+      let messageReplied
+      messageReplied = this.props.payload.replied_comment_message.replace(/\n/g, ' ')
+      if (messageReplied.length > 50) {
+        messageReplied = messageReplied.substr(0, 48) + '...'
+      }
+      const backgroundColor = this.props.email === this.props.emailSender ? Colors.lightGrey : Colors.background
+      return (
+        <View style={[styles.payloadContainer, { backgroundColor: backgroundColor }]}>
+          <View style={styles.greenBar} />
+          <View style={styles.textReplyContainer}>
+            <Text style={[styles.name, { marginLeft: 0 }]}>
+              {this.props.payload.replied_comment_sender_username}
+            </Text>
+            <Text style={styles.replied}>
+              {messageReplied}
+            </Text>
+          </View>
         </View>
       )
     }
@@ -157,6 +199,7 @@ export default class ListChat extends React.PureComponent {
               activeOpacity={0.8}
               onLongPress={() => this.props.onLongPress()}
             >
+            {this.renderPayload()}
             {this.renderMessage(this.props.message)}
             </TouchableOpacity>
           </View>
@@ -175,6 +218,7 @@ export default class ListChat extends React.PureComponent {
                 activeOpacity={0.8}
                 onLongPress={() => this.props.onLongPress()}
               >
+                {this.renderPayload()}
                 {this.renderMessage(this.props.message)}
               </TouchableOpacity>
               <View style={[styles.statusContainer, { marginLeft: 5 }]}>

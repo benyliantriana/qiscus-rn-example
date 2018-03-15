@@ -41,12 +41,16 @@ class ChatList extends React.Component {
       message: '',
       photo: Images.profile,
       messageOption: false,
-      selectedMessage: '',
       lastCommentId: -1,
       firstCommentId: -1,
       loadmore: true,
       callback: this.props.callback,
-      isActive: true
+      isActive: true,
+      idReply: -1, // id comment that will be replied
+      nameUserReplied: '', // name of user replied
+      emailUserReplied: '', // email of user replied
+      messageReply: '', // message comment that appear before replied
+      isReplying: false
     }
   }
 
@@ -79,7 +83,7 @@ class ChatList extends React.Component {
               "isSent": false,
               "is_deleted": false,
               "message": comments[0].message,
-              "payload": null,
+              "payload": comments[0].payload,
               "status": "read",
               "subtype": null,
               "time": moment(comments[0].timestamp).format('hh:mm A'),
@@ -93,7 +97,6 @@ class ChatList extends React.Component {
             tempData.unshift(temp)
             this.setState({
               data: tempData ,
-              message: '',
               lastMessageDate: moment(comments[0].timestamp).format('YYYY-MM-DD')
             })
             }
@@ -198,48 +201,93 @@ class ChatList extends React.Component {
         isFirst={isFirst}
         name={item.username_as}
         photo={item.avatar}
+        payload={item.payload}
         isDelivered={item.isDelivered}
         isFailed={item.isFailed}
         isPending={item.isPending}
         isRead={item.isRead}
         isSent={item.isSent}
-        onLongPress={() => this.openMessageOption(item.message)}
+        onLongPress={() =>
+          this.setState({
+            messageOption: true,
+            idReply: item.id,
+            emailUserReplied: item.username_real,
+            nameUserReplied: item.username_as,
+            messageReply: item.message
+          })
+        }
       />
     )
   }
 
   renderInput () {
-    const { message } = this.state
+    const { message, isReplying } = this.state
+    let showReplied = isReplying ? this.renderReply() : null
     return (
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.inputContainer}>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => {}}
-          >
-            <Image source={Images.attach} style={styles.imageButton} />
-          </TouchableOpacity>
-          <View style={{ flexDirection: 'row', alignItems: 'center', flex: 8 }}>
-            <TextInput
-              placeholder={I18n.t('placeholdermessage')}
-              underlineColorAndroid='transparent'
-              style={styles.input}
-              value={message}
-              onChangeText={(text) => {
-                if (text.length > 0) { qiscus.publishTyping(1) }
-                this.setState({ message: text })}
-              }
-              autoCapitalize='none'
-              autoCorrect={false}
-              multiline
-            />
+      <View style={{ flexDirection: 'column' }}>
+        {showReplied}
+        <View style={{ flexDirection: 'row' }}>
+          <View style={styles.inputContainer}>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => {}}
+            >
+              <Image source={Images.attach} style={styles.imageButton} />
+            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center', flex: 8 }}>
+              <TextInput
+                placeholder={I18n.t('placeholdermessage')}
+                underlineColorAndroid='transparent'
+                style={styles.input}
+                value={message}
+                onChangeText={(text) => {
+                  if (text.length > 0) { qiscus.publishTyping(1) }
+                  this.setState({ message: text })}
+                }
+                autoCapitalize='none'
+                autoCorrect={false}
+                multiline
+              />
+            </View>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => this.sendMessage()}
+            >
+              <Image source={Images.send} style={styles.imageButton} />
+            </TouchableOpacity>
           </View>
+        </View>
+      </View>
+    )
+  }
+
+  renderReply () {
+    const { nameUserReplied, messageReply } = this.state
+    let messagePreview
+    if (messageReply.length < 50) {
+      messagePreview = messageReply.replace(/\n/g, ' ')
+    } else {
+      messagePreview = messageReply.replace(/\n/g, ' ')
+      messagePreview = messagePreview.substr(0, 49) + '...'
+    }
+    return (
+      <View style={styles.replyContainer}>
+        <View style={{ flexDirection: 'column' }}>
+          <View style={styles.greenBar} />
+        </View>
+        <View style={styles.contentReplyContainer}>
+          <Text style={styles.textName}>{nameUserReplied}</Text>
+          <Text style={styles.textMessage}>{messagePreview}</Text>
+        </View>
+        <View style={{ flex: 1 }} />
+        <View style={styles.cancelContainer}>
           <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => this.sendMessage()}
+            onPress={() => this.setState({ isReplying: false })}
+            style={{ padding: 8, marginRight: 4 }}
           >
-            <Image source={Images.send} style={styles.imageButton} />
+            <Image source={Images.cancelGrey} style={styles.cancel} />
           </TouchableOpacity>
+          <View style={{ flex: 1 }} />
         </View>
       </View>
     )
@@ -273,18 +321,24 @@ class ChatList extends React.Component {
   renderMenu (images, label) {
     const newStyle = label === I18n.t('cancel') ? { color: Colors.red } : {}
     return (
-      <TouchableOpacity style={styles.menuContainer}>
+      <TouchableOpacity
+        style={styles.menuContainer}
+        onPress={() => this.menuHandler(label)}
+      >
         <Image source={images} style={styles.iconMenu} />
         <Text style={[styles.textMenu, newStyle]}>{label}</Text>
       </TouchableOpacity>
     )
   }
 
-  openMessageOption (message) {
-    this.setState({
-      messageOption: true,
-      selectedMessage: message
-    })
+  menuHandler (label) {
+    switch (label) {
+      case I18n.t('reply'):
+        this.setState({ messageOption: false, isReplying: true })
+        break;
+      default:
+        break;
+    }
   }
 
   loadmore () {
@@ -315,13 +369,30 @@ class ChatList extends React.Component {
   }
 
   sendMessage () {
-    const { id, message, firstCommentId } = this.state
+    const { id, message, firstCommentId, isReplying, nameUserReplied, emailUserReplied, messageReply, idReply } = this.state
     if (message.length > 0) {
-      qiscus.sendComment(id, message)
-      .then(() => {
-        this.setState({ message: '' })
-        qiscus.publishTyping(0)
-      })
+      if (isReplying) {
+        const payload = {
+          text: message,
+          replied_comment_id: idReply,
+          replied_comment_message: messageReply,
+          replied_comment_payload: null,
+          replied_comment_sender_email: emailUserReplied,
+          replied_comment_sender_username: nameUserReplied,
+          replied_comment_type: 'text'
+        }
+        qiscus.sendComment(id, message, null, 'reply', JSON.stringify(payload))
+          .then(() => {
+            this.setState({ message: '', isReplying: false })
+            qiscus.publishTyping(0)
+          })
+      } else {
+        qiscus.sendComment(id, message)
+        .then(() => {
+          this.setState({ message: '', isReplying: false })
+          qiscus.publishTyping(0)
+        })
+      }
     }
   }
 

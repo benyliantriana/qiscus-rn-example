@@ -20,7 +20,8 @@ const images = {
   reply: require('../Images/reply.png'),
   forward: require('../Images/forward.png'),
   copy: require('../Images/copy.png'),
-  cancel: require('../Images/cancel.png')
+  cancel: require('../Images/cancel.png'),
+  cancelGrey: require('../Images/cancelGrey.png')
 }
 
 export default images

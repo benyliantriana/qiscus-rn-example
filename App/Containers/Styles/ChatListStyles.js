@@ -91,5 +91,44 @@ export default StyleSheet.create({
     marginRight: 15,
     borderTopWidth: 1,
     borderTopColor: Colors.border
+  },
+  replyContainer: {
+    flexDirection: 'row',
+    backgroundColor: Colors.background,
+    alignItems: 'center',
+    minHeight: 50,
+    maxHeight: 100,
+    width: Dimensions.get('window').width
+  },
+  greenBar: {
+    minHeight: 50,
+    flex: 1,
+    width: 5,
+    backgroundColor: Colors.green
+  },
+  contentReplyContainer: {
+    flexDirection: 'column',
+    marginLeft: 8,
+    padding: 2
+  },
+  textName: {
+    fontFamily: 'semiBold',
+    fontSize: 12,
+    lineHeight: 18,
+    color: Colors.grey
+  },
+  textMessage: {
+    fontFamily: 'regular',
+    fontSize: 14,
+    lineHeight: 23,
+    color: Colors.grey
+  },
+  cancelContainer: {
+    flexDirection: 'column'
+  },
+  cancel: {
+    width: 16,
+    height: 16,
+    resizeMode: 'contain'
   }
 })

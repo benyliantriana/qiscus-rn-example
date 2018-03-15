@@ -16,10 +16,10 @@ export default StyleSheet.create({
     color: Colors.label
   },
   messageContainer: {
-    backgroundColor: Colors.background,
     maxWidth: Dimensions.get('window').width * 2 / 3,
+    backgroundColor: Colors.background,
     borderRadius: 10,
-    padding: 10,
+    padding: 8,
     elevation: 2,
     margin: 3
   },
@@ -79,5 +79,32 @@ export default StyleSheet.create({
     minHeight: 0.20 * Dimensions.get('window').height,
     minWidth: 0.45 * Dimensions.get('window').width,
     margin: -4
+  },
+  payloadContainer: {
+    flexDirection: 'row',
+    borderTopColor: Colors.border,
+    borderRightColor: Colors.border,
+    borderBottomColor: Colors.border,
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderBottomWidth: 1,
+    borderTopRightRadius: 3,
+    borderBottomRightRadius: 3
+  },
+  greenBar: {
+    width: 5,
+    backgroundColor: Colors.green,
+    borderTopLeftRadius: 3,
+    borderBottomLeftRadius: 3
+  },
+  textReplyContainer: {
+    flexDirection: 'column',
+    padding: 5,
+    paddingLeft: 10
+  },
+  replied: {
+    fontFamily: 'regular',
+    fontSize: 11,
+    lineHeight: 19
   }
 })

@@ -75,19 +75,23 @@ class ChatRoom extends React.Component {
   }
 
   renderitem = ({ item }) => {
-    let date
+    let date, lastMessage
     const tempDay = 24 * 60 * 60 * 1000
     if ((moment() - item.last_comment.unix_timestamp * 1000) < tempDay) {
       date = moment(item.last_comment.unix_timestamp * 1000).format('hh:mm')
     } else {
       date = moment(item.last_comment.unix_timestamp * 1000).format('DD/MM/YY')
     }
+    lastMessage = item.last_comment.message.replace(/\n/g, ' ')
+    if (lastMessage.length > 50) {
+      lastMessage = lastMessage.substr(0, 48) + '...'
+    }
     return (
       <ListRoom
         unreadCount={item.unread_count}
         avatar={item.avatar_url}
         name={item.room_name}
-        lastMessage={item.last_comment.message}
+        lastMessage={lastMessage}
         date={date}
         onPress={() => this.detailChat(item.id_str, item.room_name, item.chat_type)}
       />
