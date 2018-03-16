@@ -53,8 +53,10 @@ class ChatList extends React.Component {
       messageReply: '', // message comment that appear before replied
       isReplying: false,
       comments: this.props.comments
-    }
+    } 
   }
+
+  x = this.props.EventEmitter
 
   /**
    * array chat is reversed, and flatlist will show it in reversed too
@@ -68,21 +70,8 @@ class ChatList extends React.Component {
   }
 
   componentWillMount () {
-    // qiscus.init({
-    //   AppId: 'sdksample',
-    //   options: {
-    //     newMessagesCallback: (comments) => {
-    //       
-    //   }}
-    // })
+    this.x.addListener('new message', (params) => this.newMessage(params))
     qiscus = this.props.qiscus
-    qiscus.init({
-      AppId: 'sdksample',
-      options: {
-        newMessagesCallback: (comments) => {
-          this.newMessage(comments[0])
-      }}
-    })
     qiscus.getRoomById(this.props.id).then(data => {
       try {
         const reversedData = data.comments.length > 0 ? [...data.comments].reverse() : []

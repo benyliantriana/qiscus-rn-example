@@ -21,6 +21,10 @@ import { Header, EmptyState, ListRoom } from '../Components'
 
 import styles from './Styles/ChatRoomStyles'
 
+import EventEmitter from 'EventEmitter'
+
+const x = new EventEmitter()
+
 I18n.translations = Dictionary
 
 class ChatRoom extends React.Component {
@@ -47,6 +51,7 @@ class ChatRoom extends React.Component {
       options: {
         newMessagesCallback: (comments) => {
           this.loadRoom()
+          x.emit('new message', comments[0])
       }}
     })
   }
@@ -62,7 +67,6 @@ class ChatRoom extends React.Component {
   componentWillReceiveProps (nextProps) {
     if (nextProps.callback !== undefined) {
       if (nextProps.callback !== this.state.callback) {
-        this.init()
         this.loadRoom()
         this.setState({
           callback: nextProps.callback,
@@ -126,7 +130,8 @@ class ChatRoom extends React.Component {
       typeRoom: typeRoom,
       qiscus: qiscus,
       comments: this.state.comments,
-      callback: this.state.callback
+      callback: this.state.callback,
+      EventEmitter: x
     })
   }
 
