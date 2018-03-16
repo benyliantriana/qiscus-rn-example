@@ -110,11 +110,7 @@ class Login extends React.Component {
         AppId: 'sdksample',
         options: {
           loginSuccessCallback: (data) => this.successLogin(data), // if login / register is success
-          loginErrorCallback: (data) => this.errorLogin(data), // if login / register is failed
-          newMessagesCallback: (comments) => {
-            // console.warn(comments)
-            this.setState({ newMessage: comments })
-          }
+          loginErrorCallback: (data) => this.errorLogin(data) // if login / register is failed
         }
       })
       this.setState({ loading: true }) // set the button to loading state
@@ -139,6 +135,7 @@ class Login extends React.Component {
       this.setState({ loading: false })
     } catch (e) {
       ToastAndroid.show(I18n.t('serverError'), ToastAndroid.SHORT)
+      this.setState({ loading: false })
     }
   }
 

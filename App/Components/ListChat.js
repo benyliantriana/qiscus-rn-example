@@ -112,7 +112,7 @@ export default class ListChat extends React.PureComponent {
         </TouchableOpacity>
       )
     } else {
-      if (this.props.payload === null) {
+      if (this.props.payload === null || this.props.payload === undefined) {
         return <Text style={styles.textMessage}>{message}</Text>
       } else {
         return <Text style={styles.textMessage}>{this.props.payload.text}</Text>
@@ -136,7 +136,7 @@ export default class ListChat extends React.PureComponent {
   }
 
   renderPayload () {
-    if (this.props.payload !== null) {
+    if (this.props.payload !== null && this.props.payload !== undefined) {
       if (this.props.payload.replied_comment_message === undefined) return null
       let messageReplied
       messageReplied = this.props.payload.replied_comment_message.replace(/\n/g, ' ')

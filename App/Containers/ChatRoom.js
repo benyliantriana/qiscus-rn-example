@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import moment from 'moment'
 import { Actions, ActionConst } from 'react-native-router-flux'
+import qiscus from '../../libs/SDKCore'
 
 import { Images, Dictionary, Colors } from '../Themes'
 
@@ -31,36 +32,42 @@ class ChatRoom extends React.Component {
       email: this.props.email, // receiving params from previous container
       photo: this.props.photo,
       callback: false,
-      isComponentActive: true
+      isComponentActive: true,
     }
   }
 
-  qiscus = this.props.qiscus
-
   componentWillMount () {
-    if (this.state.isComponentActive) {
-      qiscus.userAdapter.loadRoomList().then(data =>
-        this.setState({
-          data: data,
-          loading: false
-        }))
-    }
+    this.init()
+    this.loadRoom()
+  }
+
+  init () {
+    qiscus.init({
+      AppId: 'sdksample',
+      options: {
+        newMessagesCallback: (comments) => {
+          this.loadRoom()
+      }}
+    })
+  }
+
+  loadRoom () {
+    qiscus.userAdapter.loadRoomList().then(data =>
+      this.setState({
+        data: data,
+        loading: false
+      }))
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.callback !== undefined) {
       if (nextProps.callback !== this.state.callback) {
-        qiscus.userAdapter.loadRoomList().then(data =>
-          {
-            if (data !== this.state.data) {
-              this.setState({
-                data: data,
-                callback: nextProps.callback,
-                isComponentActive: true
-              })
-            }
-          }
-        )
+        this.init()
+        this.loadRoom()
+        this.setState({
+          callback: nextProps.callback,
+          isComponentActive: true
+        })
       }
     }
   }
@@ -118,6 +125,7 @@ class ChatRoom extends React.Component {
       email: this.state.email,
       typeRoom: typeRoom,
       qiscus: qiscus,
+      comments: this.state.comments,
       callback: this.state.callback
     })
   }

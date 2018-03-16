@@ -51,11 +51,10 @@ class ChatList extends React.Component {
       nameUserReplied: '', // name of user replied
       emailUserReplied: '', // email of user replied
       messageReply: '', // message comment that appear before replied
-      isReplying: false
+      isReplying: false,
+      comments: this.props.comments
     }
   }
-
-  qiscus = this.props.qiscus
 
   /**
    * array chat is reversed, and flatlist will show it in reversed too
@@ -64,44 +63,24 @@ class ChatList extends React.Component {
    * so the scroll view in flatlist wont move because new data added
    */
 
+  loadRoom () {
+    ToastAndroid.show('new message', ToastAndroid.SHORT)
+  }
+
   componentWillMount () {
+    // qiscus.init({
+    //   AppId: 'sdksample',
+    //   options: {
+    //     newMessagesCallback: (comments) => {
+    //       
+    //   }}
+    // })
+    qiscus = this.props.qiscus
     qiscus.init({
       AppId: 'sdksample',
       options: {
         newMessagesCallback: (comments) => {
-          if (this.state.isActive) {
-            if (comments[0].room_id_str === this.state.id) {
-              const temp = {
-              "attachment": null,
-              "avatar": comments[0].user_avatar,
-              "before_id": comments[0].comment_before_id,
-              "date": comments[0].timestamp,
-              "id": comments[0].id,
-              "isDelivered": false,
-              "isFailed": false,
-              "isPending": false,
-              "isRead": false,
-              "isSent": false,
-              "is_deleted": false,
-              "message": comments[0].message,
-              "payload": comments[0].payload,
-              "status": "read",
-              "subtype": null,
-              "time": moment(comments[0].timestamp).format('HH:mm A'),
-              "timestamp": comments[0].timestamp,
-              "type": "text",
-              "unique_id": comments[0].unique_temp_id,
-              "username_as": comments[0].username,
-              "username_real": comments[0].email
-            }
-            let tempData = [...this.state.data]
-            tempData.unshift(temp)
-            this.setState({
-              data: tempData ,
-              lastMessageDate: moment(comments[0].timestamp).format('YYYY-MM-DD')
-            })
-            }
-          }
+          this.newMessage(comments[0])
       }}
     })
     qiscus.getRoomById(this.props.id).then(data => {
@@ -143,6 +122,42 @@ class ChatList extends React.Component {
     })
     Actions.pop({ refresh: { callback: !this.state.callback } })
     return true
+  }
+
+  newMessage (data) {
+    if (this.state.isActive) {
+      if (data.room_id_str === this.state.id) {
+        const temp = {
+        "attachment": null,
+        "avatar": data.user_avatar,
+        "before_id": data.comment_before_id,
+        "date": data.timestamp,
+        "id": data.id,
+        "isDelivered": false,
+        "isFailed": false,
+        "isPending": false,
+        "isRead": false,
+        "isSent": false,
+        "is_deleted": false,
+        "message": data.message,
+        "payload": data.payload,
+        "status": "read",
+        "subtype": null,
+        "time": moment(data.timestamp).format('HH:mm A'),
+        "timestamp": data.timestamp,
+        "type": "text",
+        "unique_id": data.unique_temp_id,
+        "username_as": data.username,
+        "username_real": data.email
+      }
+      let tempData = [...this.state.data]
+      tempData.unshift(temp)
+      this.setState({
+        data: tempData ,
+        lastMessageDate: moment(data.timestamp).format('YYYY-MM-DD')
+      })
+      }
+    }
   }
 
   /**
