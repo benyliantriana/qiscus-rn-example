@@ -56,7 +56,7 @@ class ChatList extends React.Component {
     } 
   }
 
-  x = this.props.EventEmitter
+  emitter = this.props.EventEmitter // receiving props emitter from ChatRoom.js (romm list)
 
   /**
    * array chat is reversed, and flatlist will show it in reversed too
@@ -70,7 +70,9 @@ class ChatList extends React.Component {
   }
 
   componentWillMount () {
-    this.x.addListener('new message', (params) => this.newMessage(params))
+    // add event emitter for handling new message
+    this.emitter.addListener('new message', (params) => this.newMessage(params))
+
     qiscus = this.props.qiscus
     qiscus.getRoomById(this.props.id).then(data => {
       try {

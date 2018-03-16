@@ -21,9 +21,12 @@ import { Header, EmptyState, ListRoom } from '../Components'
 
 import styles from './Styles/ChatRoomStyles'
 
-import EventEmitter from 'EventEmitter'
+/**
+ * add event emitter for handling new message
+ */
 
-const x = new EventEmitter()
+import EventEmitter from 'EventEmitter'
+const emitter = new EventEmitter()
 
 I18n.translations = Dictionary
 
@@ -51,7 +54,7 @@ class ChatRoom extends React.Component {
       options: {
         newMessagesCallback: (comments) => {
           this.loadRoom()
-          x.emit('new message', comments[0])
+          emitter.emit('new message', comments[0]) // emitter name is new message
       }}
     })
   }
@@ -131,7 +134,7 @@ class ChatRoom extends React.Component {
       qiscus: qiscus,
       comments: this.state.comments,
       callback: this.state.callback,
-      EventEmitter: x
+      EventEmitter: emitter // proping emitter for chat list component
     })
   }
 
