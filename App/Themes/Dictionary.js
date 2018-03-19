@@ -29,6 +29,8 @@ export default {
     serverError: 'Server error',
     camera: 'Take Photo',
     gallery: 'Image from Gallery',
-    file: 'File / Document'
+    file: 'File / Document',
+    defaultImageName: 'Image.jpg',
+    caption: 'Add caption to your image'
   }
 }

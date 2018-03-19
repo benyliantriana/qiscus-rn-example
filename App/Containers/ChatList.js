@@ -78,7 +78,6 @@ class ChatList extends React.Component {
     qiscus.getRoomById(this.props.id).then(data => {
       try {
         const reversedData = data.comments.length > 0 ? [...data.comments].reverse() : []
-        console.log(reversedData[0])
         this.setState({
           data: reversedData,
           loading: false,
@@ -235,6 +234,7 @@ class ChatList extends React.Component {
   renderInput () {
     const { message, isReplying } = this.state
     let showReplied = isReplying ? this.renderReply() : null
+    let sendIcon = message === '' ? Images.send : Images.sendActive
     return (
       <View style={{ flexDirection: 'column' }}>
         {showReplied}
@@ -265,7 +265,7 @@ class ChatList extends React.Component {
               style={styles.buttonContainer}
               onPress={() => this.sendMessage()}
             >
-              <Image source={Images.send} style={styles.imageButton} />
+              <Image source={sendIcon} style={styles.imageButton} />
             </TouchableOpacity>
           </View>
         </View>
@@ -396,11 +396,11 @@ class ChatList extends React.Component {
         break
       case I18n.t('camera'):
         this.setState({ attachment: false })
-        this.openCamera()
+        this.openMedia('camera')
         break
       case I18n.t('gallery'):
         this.setState({ attachment: false })
-        this.openGallery()
+        this.openMedia('gallery')
         break
       default:
         break;
@@ -462,17 +462,16 @@ class ChatList extends React.Component {
     }
   }
 
-  openCamera () {
+  openMedia (type) {
     Actions.media({
       type: ActionConst.PUSH,
-      typeAttach: 'camera'
-    })
-  }
-
-  openGallery () {
-    Actions.media({
-      type: ActionConst.PUSH,
-      typeAttach: 'gallery'
+      typeAttach: type,
+      idReply: this.state.idReply,
+      nameUserReplied: this.state.nameUserReplied,
+      emailUserReplied: this.state.emailUserReplied,
+      messageReply: this.state.messageReply,
+      isReplying: this.state.isReplying,
+      qiscus: this.props.qiscus
     })
   }
 

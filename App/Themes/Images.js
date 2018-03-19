@@ -13,6 +13,7 @@ const images = {
   emptyChat: require('../Images/empty-chat.png'),
   attach: require('../Images/attach.png'),
   send: require('../Images/send.png'),
+  sendActive: require('../Images/sendActive.png'),
   isRead: require('../Images/isRead.png'),
   isDelivered: require('../Images/isDelivered.png'),
   isPending: require('../Images/isPending.png'),
