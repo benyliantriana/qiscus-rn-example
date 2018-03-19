@@ -15,7 +15,7 @@ import {
   Clipboard
 } from 'react-native'
 import moment from 'moment'
-import { Actions } from 'react-native-router-flux'
+import { Actions, ActionConst } from 'react-native-router-flux'
 
 import { Images, Dictionary, Colors } from '../Themes'
 
@@ -41,7 +41,8 @@ class ChatList extends React.Component {
       lastMessageDate: '',
       message: '',
       photo: Images.profile,
-      messageOption: false,
+      messageOption: false, // state modal option message
+      attachment: false, // state modal attachment message
       lastCommentId: -1,
       firstCommentId: -1,
       loadmore: true,
@@ -77,6 +78,7 @@ class ChatList extends React.Component {
     qiscus.getRoomById(this.props.id).then(data => {
       try {
         const reversedData = data.comments.length > 0 ? [...data.comments].reverse() : []
+        console.log(reversedData[0])
         this.setState({
           data: reversedData,
           loading: false,
@@ -240,7 +242,7 @@ class ChatList extends React.Component {
           <View style={styles.inputContainer}>
             <TouchableOpacity
               style={styles.buttonContainer}
-              onPress={() => {}}
+              onPress={() => this.setState({ attachment: true })}
             >
               <Image source={Images.attach} style={styles.imageButton} />
             </TouchableOpacity>
@@ -273,13 +275,26 @@ class ChatList extends React.Component {
 
   renderReply () {
     const { nameUserReplied, messageReply } = this.state
-    let messagePreview
-    if (messageReply.length < 50) {
-      messagePreview = messageReply.replace(/\n/g, ' ')
+    let messagePreview, renderRepliedMessage, messageImage
+    let extImage = ['jpg','gif','jpeg','png', 'JPG', 'GIF', 'JPEG', 'PNG']
+    let isImage = extImage.find((data) => messageReply.includes(data))
+    if (isImage && messageReply.includes('[file]')) {
+      messageImage = messageReply.substring(6, messageReply.length-7).trim()
+      messagePreview = (
+        <Image
+          style={styles.imageMessage}
+          source={{ uri: messageImage }}
+        />
+      )
     } else {
-      messagePreview = messageReply.replace(/\n/g, ' ')
-      messagePreview = messagePreview.substr(0, 49) + '...'
+      if (messageReply.length < 50) {
+        messagePreview = messageReply.replace(/\n/g, ' ')
+      } else {
+        messagePreview = messageReply.replace(/\n/g, ' ')
+        messagePreview = messagePreview.substr(0, 49) + '...'
+      }
     }
+    renderRepliedMessage = <Text style={styles.textMessage}>{messagePreview}</Text>
     return (
       <View style={styles.replyContainer}>
         <View style={{ flexDirection: 'column' }}>
@@ -287,7 +302,7 @@ class ChatList extends React.Component {
         </View>
         <View style={styles.contentReplyContainer}>
           <Text style={styles.textName}>{nameUserReplied}</Text>
-          <Text style={styles.textMessage}>{messagePreview}</Text>
+          {renderRepliedMessage}
         </View>
         <View style={{ flex: 1 }} />
         <View style={styles.cancelContainer}>
@@ -328,6 +343,31 @@ class ChatList extends React.Component {
     )
   }
 
+  renderModalAttachment () {
+    const { attachment } = this.state
+    return (
+      <Modal
+        animationType={'fade'}
+        transparent
+        visible={attachment}
+        onRequestClose={() => this.setState({ attachment: false })}
+      >
+        <TouchableWithoutFeedback onPress={() => this.setState({ attachment: false })}>
+          <View style={styles.modalContainer}>
+            <View style={{ flex: 1 }} />
+            <View style={styles.optionContainer}>
+              {this.renderMenu(Images.camera, I18n.t('camera'))}
+              {this.renderMenu(Images.gallery, I18n.t('gallery'))}
+              {this.renderMenu(Images.file, I18n.t('file'))}
+              <View style={styles.border} />
+              {this.renderMenu(Images.cancel, I18n.t('cancel'))}
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    )
+  }
+
   renderMenu (images, label) {
     const newStyle = label === I18n.t('cancel') ? { color: Colors.red } : {}
     return (
@@ -345,11 +385,23 @@ class ChatList extends React.Component {
     switch (label) {
       case I18n.t('reply'):
         this.setState({ messageOption: false, isReplying: true })
-        break;
+        break
       case I18n.t('copy'):
         await Clipboard.setString(this.state.messageReply)
         this.setState({ messageOption: false })
         ToastAndroid.show(I18n.t('messageCopied'), ToastAndroid.SHORT)
+        break
+      case I18n.t('cancel'):
+        this.setState({ messageOption: false, attachment: false })
+        break
+      case I18n.t('camera'):
+        this.setState({ attachment: false })
+        this.openCamera()
+        break
+      case I18n.t('gallery'):
+        this.setState({ attachment: false })
+        this.openGallery()
+        break
       default:
         break;
     }
@@ -410,6 +462,20 @@ class ChatList extends React.Component {
     }
   }
 
+  openCamera () {
+    Actions.media({
+      type: ActionConst.PUSH,
+      typeAttach: 'camera'
+    })
+  }
+
+  openGallery () {
+    Actions.media({
+      type: ActionConst.PUSH,
+      typeAttach: 'gallery'
+    })
+  }
+
   render () {
     const { data, loading, photo } = this.state
     let view, renderDate, renderInput
@@ -436,6 +502,7 @@ class ChatList extends React.Component {
         {view}
         {renderInput}
         {this.renderModalOptionMessage()}
+        {this.renderModalAttachment()}
       </View>
     )
   }

@@ -13,6 +13,7 @@ import {
 import Login from '../Containers/Login'
 import ChatList from '../Containers/ChatList'
 import ChatRoom from '../Containers/ChatRoom'
+import Media from '../Containers/Media'
 import App from '../Containers/App'
 
 /**
@@ -46,6 +47,12 @@ const Navigation = () => (
         title=''
         hideNavBar
         component={ChatRoom}
+      />
+      <Scene
+        key='media'
+        title=''
+        hideNavBar
+        component={Media}
       />
       <Scene
         key='app'

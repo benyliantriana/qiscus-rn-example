@@ -26,6 +26,9 @@ export default {
     image: 'image',
     link: 'link',
     messageCopied: 'Message copied',
-    serverError: 'Server error'
+    serverError: 'Server error',
+    camera: 'Take Photo',
+    gallery: 'Image from Gallery',
+    file: 'File / Document'
   }
 }

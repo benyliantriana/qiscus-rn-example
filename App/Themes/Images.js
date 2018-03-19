@@ -21,7 +21,11 @@ const images = {
   forward: require('../Images/forward.png'),
   copy: require('../Images/copy.png'),
   cancel: require('../Images/cancel.png'),
-  cancelGrey: require('../Images/cancelGrey.png')
+  cancelGrey: require('../Images/cancelGrey.png'),
+  loading: require('../Images/loading.png'),
+  camera: require('../Images/camera.png'),
+  gallery: require('../Images/gallery.png'),
+  file: require('../Images/file.png')
 }
 
 export default images
