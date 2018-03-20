@@ -33,16 +33,19 @@ class Profile extends React.Component {
   emitter = this.props.emitter 
 
   renderPhoto () {
-    const { data } = this.state
+    const { data, typeProfile } = this.state
+    let changePhotoButton = typeProfile === 'self' ? (
+      <TouchableOpacity onPress={() => {}}>
+          <Image source={Images.changeImage} style={styles.icon} />
+        </TouchableOpacity>
+    ) : null
     return (
       <ImageBackground
         style={styles.photo}
         source={{ uri: data.avatar_url }}
         resizeMode='cover'
       >
-        <TouchableOpacity onPress={() => {}}>
-          <Image source={Images.changeImage} style={styles.icon} />
-        </TouchableOpacity>
+        {changePhotoButton}
       </ImageBackground>
     )
   }
