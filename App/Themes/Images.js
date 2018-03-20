@@ -26,7 +26,13 @@ const images = {
   loading: require('../Images/loading.png'),
   camera: require('../Images/camera.png'),
   gallery: require('../Images/gallery.png'),
-  file: require('../Images/file.png')
+  file: require('../Images/file.png'),
+  changeImage: require('../Images/changeImage.png'),
+  contact: require('../Images/contact.png'),
+  edit: require('../Images/edit.png'),
+  id: require('../Images/id.png'),
+  logout: require('../Images/logout.png'),
+  group: require('../Images/group.png')
 }
 
 export default images

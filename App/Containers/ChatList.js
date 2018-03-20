@@ -53,11 +53,11 @@ class ChatList extends React.Component {
       emailUserReplied: '', // email of user replied
       messageReply: '', // message comment that appear before replied
       isReplying: false,
-      comments: this.props.comments
+      participants: []
     } 
   }
 
-  emitter = this.props.EventEmitter // receiving props emitter from ChatRoom.js (romm list)
+  emitter = this.props.emitter // receiving props emitter from ChatRoom.js (romm list)
 
   /**
    * array chat is reversed, and flatlist will show it in reversed too
@@ -65,10 +65,6 @@ class ChatList extends React.Component {
    * and if new (previeous) data added (older message), it wont move the index data in array
    * so the scroll view in flatlist wont move because new data added
    */
-
-  loadRoom () {
-    ToastAndroid.show('new message', ToastAndroid.SHORT)
-  }
 
   componentWillMount () {
     // add event emitter for handling new message
@@ -85,14 +81,16 @@ class ChatList extends React.Component {
           type: this.props.typeRoom,
           photo: data.avatar,
           lastCommentId: reversedData[reversedData.length - 1].id,
-          firstCommentId: reversedData[0].id
+          firstCommentId: reversedData[0].id,
+          participants: data.participants
         })
       } catch (e) {
         this.setState({
           data: [],
           loading: false,
           type: this.props.typeRoom,
-          photo: data.avatar
+          photo: data.avatar,
+          participants: data.participants
         })
       }
     }, err => {
@@ -112,13 +110,16 @@ class ChatList extends React.Component {
     this.setState({
       isActive: false
     })
-    Actions.pop({ refresh: { callback: !this.state.callback } })
+    Actions.chatroom({
+      type: ActionConst.POP_TO,
+      refresh: { callback: !this.state.callback }
+    })
     return true
   }
 
   newMessage (data) {
     if (this.state.isActive) {
-      if (data.room_id_str === this.state.id) {
+      if (String(data.room_id_str) === String(this.state.id)) {
         const temp = {
         "attachment": null,
         "avatar": data.user_avatar,
@@ -168,7 +169,14 @@ class ChatList extends React.Component {
   }
 
   profile () {
-    ToastAndroid.show('right pressed', ToastAndroid.SHORT)
+    const { type, participants, email } = this.state
+    let index = participants[0].email === email ? 1 : 0
+    Actions.profile({
+      type: ActionConst.PUSH,
+      typeProfile: 'other',
+      data: participants[index],
+      emitter: this.emitter
+    })
   }
 
   renderList () {

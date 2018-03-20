@@ -78,7 +78,7 @@ export default class Header extends React.Component {
     if (loading) {
       title = (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size='small' color={Colors.black} />
+          <ActivityIndicator size='small' color={Colors.green} />
           <Text style={[styles.textTitle, { marginLeft: 5 }]}>{I18n.t('loading')}</Text>
         </View>
       )

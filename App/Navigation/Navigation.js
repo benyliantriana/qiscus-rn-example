@@ -14,6 +14,8 @@ import Login from '../Containers/Login'
 import ChatList from '../Containers/ChatList'
 import ChatRoom from '../Containers/ChatRoom'
 import Media from '../Containers/Media'
+import Profile from '../Containers/Profile'
+import Contact from '../Containers/Contact'
 import App from '../Containers/App'
 
 /**
@@ -53,6 +55,18 @@ const Navigation = () => (
         title=''
         hideNavBar
         component={Media}
+      />
+      <Scene
+        key='profile'
+        title=''
+        hideNavBar
+        component={Profile}
+      />
+      <Scene
+        key='contact'
+        title=''
+        hideNavBar
+        component={Contact}
       />
       <Scene
         key='app'

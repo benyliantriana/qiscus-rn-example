@@ -31,6 +31,13 @@ export default {
     gallery: 'Image from Gallery',
     file: 'File / Document',
     defaultImageName: 'Image.jpg',
-    caption: 'Add caption to your image'
+    caption: 'Add caption to your image',
+    profile: 'Profile',
+    information: 'INFORMATION',
+    logout: 'Logout',
+    sendMessage: 'Send Message',
+    newConversations: 'New Conversation',
+    createGroupChat: 'Create Group Chat',
+    contacts: 'CONTACTS'
   }
 }

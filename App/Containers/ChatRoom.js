@@ -50,12 +50,15 @@ class ChatRoom extends React.Component {
 
   init () {
     qiscus.init({
-      AppId: 'sdksample',
+      AppId: 'sampleapp-65ghcsaysse',
       options: {
         newMessagesCallback: (comments) => {
           this.loadRoom()
           emitter.emit('new message', comments[0]) // emitter name is new message
-      }}
+        },
+        chatRoomCreatedCallback: (data) => {
+        }
+      }
     })
   }
 
@@ -80,11 +83,22 @@ class ChatRoom extends React.Component {
   }
 
   profile () {
-    ToastAndroid.show('left pressed', ToastAndroid.SHORT)
+    let data = qiscus.userData
+    Actions.profile({
+      type: ActionConst.PUSH,
+      typeProfile: 'self',
+      qiscus: this.qiscus,
+      data: data,
+      emitter: emitter
+    })
   }
 
-  newConversation () {
-    ToastAndroid.show('right pressed', ToastAndroid.SHORT)
+  openContact () {
+    Actions.contact({
+      type: ActionConst.PUSH,
+      qiscus: this.qiscus,
+      emitter: emitter
+    })
   }
 
   renderList () {
@@ -134,7 +148,7 @@ class ChatRoom extends React.Component {
       qiscus: qiscus,
       comments: this.state.comments,
       callback: this.state.callback,
-      EventEmitter: emitter // proping emitter for chat list component
+      emitter: emitter // proping emitter for chat list component
     })
   }
 
@@ -157,7 +171,7 @@ class ChatRoom extends React.Component {
           showRightButton
           isLoading={loading}
           rightButtonImage={Images.search}
-          onRightPress={() => this.newConversation()}
+          onRightPress={() => this.openContact()}
         />
         {view}
       </View>
