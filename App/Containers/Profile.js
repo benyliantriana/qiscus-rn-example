@@ -25,19 +25,19 @@ class Profile extends React.Component {
     super(props)
     this.state = {
       typeProfile: this.props.typeProfile, // self, other, groups
-      data: this.props.data
+      data: this.props.data // data profile
     }
   }
 
   qiscus = this.props.qiscus
-  emitter = this.props.emitter 
+  emitter = this.props.emitter
 
   renderPhoto () {
     const { data, typeProfile } = this.state
     let changePhotoButton = typeProfile === 'self' ? (
       <TouchableOpacity onPress={() => {}}>
-          <Image source={Images.changeImage} style={styles.icon} />
-        </TouchableOpacity>
+        <Image source={Images.changeImage} style={styles.icon} />
+      </TouchableOpacity>
     ) : null
     return (
       <ImageBackground
@@ -76,12 +76,17 @@ class Profile extends React.Component {
   renderLogoutButton () {
     const { typeProfile } = this.state
     let onPress, label
-    if (typeProfile === 'self') {
-      label = I18n.t('logout')
-      icon = Images.logout
-    } else if (typeProfile === 'other') {
-      label = I18n.t('sendMessage')
-      icon = Images.search
+    switch (typeProfile) {
+      case 'self':
+        label = I18n.t('logout')
+        icon = Images.logout
+        break
+      case 'other':
+        label = I18n.t('sendMessage')
+        icon = Images.search
+        break
+      default:
+        break
     }
     return (
       <View style={styles.logoutContainer}>

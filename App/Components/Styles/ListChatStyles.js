@@ -79,7 +79,7 @@ export default StyleSheet.create({
   imageMessage: {
     width: 200,
     height: 112,
-    margin: -4,
+    margin: -3,
     borderRadius: 6
   },
   payloadContainer: {

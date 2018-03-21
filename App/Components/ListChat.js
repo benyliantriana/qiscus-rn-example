@@ -71,19 +71,23 @@ export default class ListChat extends React.PureComponent {
     let extImage = ['jpg','gif','jpeg','png', 'JPG', 'GIF', 'JPEG', 'PNG']
     let messageImage
     let isImage = extImage.find((data) => message.includes(data))
-    if (this.props.payload !== null && this.props.payload !== undefined) {
+    if (this.props.payload !== null && this.props.payload !== undefined && this.props.payload.url === undefined) {
       return <Text style={styles.textMessage}>{this.props.payload.text}</Text>
     } else if (isImage && message.includes('[file]')) {
       messageImage = message.substring(6, message.length-7).trim()
       return (
-        <ImageLoad
-          style={styles.imageMessage}
-          source={{ uri: messageImage }}
-          isShowActivity={false}
-          resizeMode='cover'
-          placeholderSource={Images.loading}
-          placeholderStyle={styles.imageMessage}
-        />
+        <View style={{ flexDirection: 'column' }}>
+          <ImageLoad
+            style={styles.imageMessage}
+            source={{ uri: messageImage }}
+            isShowActivity={false}
+            resizeMode='cover'
+            borderRadius={6}
+            placeholderSource={Images.loading}
+            placeholderStyle={styles.imageMessage}
+          />
+          {this.renderCaption()}
+        </View>
       )
     } else if (message.includes('[file]')) {
       messageImage = message.substring(6, message.length-7).trim()
@@ -115,6 +119,14 @@ export default class ListChat extends React.PureComponent {
     } else {
       return <Text style={styles.textMessage}>{message}</Text>
     }
+  }
+
+  renderCaption () {
+    const caption = this.props.payload.caption
+    if (caption === undefined || caption === '') {
+      return null
+    }
+    return <Text style={[styles.textMessage, {marginTop: 5, marginBottom: -2} ]}>{this.props.payload.caption}</Text>
   }
 
   renderMessageRetry () {

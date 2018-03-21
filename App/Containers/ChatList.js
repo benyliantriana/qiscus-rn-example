@@ -53,7 +53,8 @@ class ChatList extends React.Component {
       emailUserReplied: '', // email of user replied
       messageReply: '', // message comment that appear before replied
       isReplying: false,
-      participants: []
+      participants: [],
+      uriImageReplied: '' // uri replied message with image and caption
     } 
   }
 
@@ -62,7 +63,7 @@ class ChatList extends React.Component {
   /**
    * array chat is reversed, and flatlist will show it in reversed too
    * this is to make the flatlist auto scroll to bottom 
-   * and if new (previeous) data added (older message), it wont move the index data in array
+   * and if new (previous) data added (older message), it wont move the index data in array
    * so the scroll view in flatlist wont move because new data added
    */
 
@@ -98,6 +99,10 @@ class ChatList extends React.Component {
     })
   }
 
+  /**
+   * add handling for back android to trigger chatroom to relaod
+   */
+
   componentDidMount () {
     BackHandler.addEventListener('hardwareBackPress', () => this.backAndroid())
   }
@@ -112,12 +117,13 @@ class ChatList extends React.Component {
     })
     Actions.chatroom({
       type: ActionConst.POP_TO,
-      refresh: { callback: !this.state.callback }
+      refresh: { callback: !this.state.callback } // trigger for componentWillReceiveProps in chatroom
     })
-    return true
+    return true // to prevent apps to exit
   }
 
   newMessage (data) {
+    // handling new message
     if (this.state.isActive) {
       if (String(data.room_id_str) === String(this.state.id)) {
         const temp = {
@@ -167,6 +173,10 @@ class ChatList extends React.Component {
       </View>
     )
   }
+
+  /**
+   * open the profile of our friend in chat
+   */
 
   profile () {
     const { type, participants, email } = this.state
@@ -223,18 +233,7 @@ class ChatList extends React.Component {
         isPending={item.isPending}
         isRead={item.isRead}
         isSent={item.isSent}
-        onLongPress={() =>
-          {
-            const tempMessage = item.payload !== null ? item.payload.text : item.message
-            this.setState({
-              messageOption: true,
-              idReply: item.id,
-              emailUserReplied: item.username_real,
-              nameUserReplied: item.username_as,
-              messageReply: tempMessage
-            })
-          }
-        }
+        onLongPress={() => this.onMessagePressed(item)}
       />
     )
   }
@@ -281,19 +280,48 @@ class ChatList extends React.Component {
     )
   }
 
+  /**
+   * render reply
+   * uriImageReplied is used to check if the message replied contain uri image and caption
+   * so if the message is [file] or the uriImageReplied is not ''
+   * then handling for reply message with image is triggered
+   * caption from replied image message is assigned to variable messageReply
+   */
+
   renderReply () {
-    const { nameUserReplied, messageReply } = this.state
-    let messagePreview, renderRepliedMessage, messageImage
+    const { nameUserReplied, messageReply, uriImageReplied } = this.state
+    let messagePreview, renderRepliedMessage, renderRepliedImage, messageImage
     let extImage = ['jpg','gif','jpeg','png', 'JPG', 'GIF', 'JPEG', 'PNG']
     let isImage = extImage.find((data) => messageReply.includes(data))
-    if (isImage && messageReply.includes('[file]')) {
+    if ((isImage && messageReply.includes('[file]') || uriImageReplied !== '')) {
       messageImage = messageReply.substring(6, messageReply.length-7).trim()
-      messagePreview = (
-        <Image
-          style={styles.imageMessage}
-          source={{ uri: messageImage }}
-        />
-      )
+      if (messageReply === undefined) {
+        renderRepliedMessage = null
+        renderRepliedImage = (
+          <Image
+            style={[styles.imageMessage,{ marginRight: 5}]}
+            source={{ uri: messageImage }}
+          />
+        )
+      } else if (messageReply !== '') {
+        messageImage = uriImageReplied.substring(6, uriImageReplied.length-7).trim()
+        renderRepliedMessage = <Text style={styles.textMessage}>{messageReply}</Text>
+        renderRepliedImage = (
+          <Image
+            style={[styles.imageMessage,{ marginRight: 5}]}
+            source={{ uri: messageImage }}
+          />
+        )
+      } else {
+        messageImage = uriImageReplied.substring(6, uriImageReplied.length-7).trim()
+        renderRepliedMessage = null
+        renderRepliedImage = (
+          <Image
+            style={[styles.imageMessage,{ marginRight: 5}]}
+            source={{ uri: messageImage }}
+          />
+        )
+      }
     } else {
       if (messageReply.length < 50) {
         messagePreview = messageReply.replace(/\n/g, ' ')
@@ -301,8 +329,9 @@ class ChatList extends React.Component {
         messagePreview = messageReply.replace(/\n/g, ' ')
         messagePreview = messagePreview.substr(0, 49) + '...'
       }
+      renderRepliedMessage = <Text style={styles.textMessage}>{messagePreview}</Text>
+      renderRepliedImage = null
     }
-    renderRepliedMessage = <Text style={styles.textMessage}>{messagePreview}</Text>
     return (
       <View style={styles.replyContainer}>
         <View style={{ flexDirection: 'column' }}>
@@ -313,6 +342,7 @@ class ChatList extends React.Component {
           {renderRepliedMessage}
         </View>
         <View style={{ flex: 1 }} />
+        {renderRepliedImage}
         <View style={styles.cancelContainer}>
           <TouchableOpacity
             onPress={() => this.setState({ isReplying: false })}
@@ -415,6 +445,30 @@ class ChatList extends React.Component {
     }
   }
 
+  async onMessagePressed (item) {
+    let tempMessage, uriImage
+    if (item.payload === null) {
+      tempMessage = await item.message
+      uriImage = ''
+    } else if (item.payload !== null) {
+      if (item.payload.text !== undefined) {
+        tempMessage = await item.payload.text
+        uriImage = ''
+      } else if (item.payload.caption !== undefined) {
+        tempMessage = await item.payload.caption
+        uriImage = await item.message
+      }
+    }
+    this.setState({
+      messageOption: true,
+      idReply: item.id,
+      emailUserReplied: item.username_real,
+      nameUserReplied: item.username_as,
+      messageReply: tempMessage,
+      uriImageReplied: uriImage
+    })
+  }
+
   loadmore () {
     const { loadmore } = this.state
     if (loadmore) {
@@ -479,7 +533,8 @@ class ChatList extends React.Component {
       emailUserReplied: this.state.emailUserReplied,
       messageReply: this.state.messageReply,
       isReplying: this.state.isReplying,
-      qiscus: this.props.qiscus
+      qiscus: this.props.qiscus,
+      id: this.state.id
     })
   }
 

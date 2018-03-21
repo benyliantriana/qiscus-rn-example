@@ -73,6 +73,7 @@ class ChatRoom extends React.Component {
   componentWillReceiveProps (nextProps) {
     if (nextProps.callback !== undefined) {
       if (nextProps.callback !== this.state.callback) {
+        // reload the roomlist to check new message after back from detail chat (chatlist)
         this.loadRoom()
         this.setState({
           callback: nextProps.callback,

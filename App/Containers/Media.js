@@ -4,9 +4,11 @@ import {
   View,
   Image,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  ToastAndroid
 } from 'react-native'
 
+import axios from 'axios'
 import { Actions, ActionConst } from 'react-native-router-flux'
 import { ImagePicker } from 'expo'
 import { Images, Dictionary } from '../Themes'
@@ -24,9 +26,11 @@ class Media extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      id: this.props.id,
       imageName: 'Insert Image',
       imageUri: '',
       message: '',
+      loading: false,
       typeAttach: this.props.typeAttach // camera or gallery
     }
   }
@@ -111,7 +115,7 @@ class Media extends React.Component {
             </View>
             <TouchableOpacity
               style={styles.buttonContainer}
-              onPress={() => this.sendMessage()}
+              onPress={() => this.uploadImage()}
             >
               <Image source={sendIcon} style={styles.imageButton} />
             </TouchableOpacity>
@@ -125,7 +129,39 @@ class Media extends React.Component {
     return null
   }
 
-  sendMessage () {
+  uploadImage () {
+    const { imageUri } = this.state
+    if (imageUri !== '') {
+      this.setState({ loading: true })
+      const form = new FormData()
+      form.append('file', { uri: imageUri, type: 'image/jpg', name: 'image.jpg' })
+      axios.post('https://sdksample.qiscus.com/api/v2/mobile/upload',
+        form
+      ,{
+        timeout: 10000
+      })
+      .then((response) => {
+        this.sendMessage(response.data.results.file.url)
+      })
+      .catch(function (error) {
+        ToastAndroid.show(error.message, ToastAndroid.SHORT)
+      })
+    }
+  }
+  
+  sendMessage (image) {
+    const { id, message } = this.state
+    const payload = {
+      "url": image,
+      "caption": message
+    }
+    qiscus.sendComment(id, message, null, 'file_attachment', JSON.stringify(payload))
+      .then(() => {
+        this.setState({ loading: false })
+        Actions.pop()
+        qiscus.publishTyping(0)
+      })
+      .catch((e) => console.log(e))
   }
 
   render () {
@@ -134,6 +170,7 @@ class Media extends React.Component {
         <Header
           title={this.state.imageName}
           onLeftPress={() => this.back()}
+          loading={this.state.loading}
         />
         {this.renderImage()}
         {this.renderInput()}
