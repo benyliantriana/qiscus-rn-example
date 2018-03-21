@@ -84,7 +84,6 @@ class ChatList extends React.Component {
           })
         }
       }
-      console.log(params)
     })
 
     qiscus = this.props.qiscus

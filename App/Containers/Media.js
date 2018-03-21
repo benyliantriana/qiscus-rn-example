@@ -130,22 +130,24 @@ class Media extends React.Component {
   }
 
   uploadImage () {
-    const { imageUri } = this.state
-    if (imageUri !== '') {
-      this.setState({ loading: true })
-      const form = new FormData()
-      form.append('file', { uri: imageUri, type: 'image/jpg', name: 'image.jpg' })
-      axios.post('https://sdksample.qiscus.com/api/v2/mobile/upload',
-        form
-      ,{
-        timeout: 10000
-      })
-      .then((response) => {
-        this.sendMessage(response.data.results.file.url)
-      })
-      .catch(function (error) {
-        ToastAndroid.show(error.message, ToastAndroid.SHORT)
-      })
+    const { imageUri, loading } = this.state
+    if (!loading) {
+      if (imageUri !== '') {
+        this.setState({ loading: true })
+        const form = new FormData()
+        form.append('file', { uri: imageUri, type: 'image/jpg', name: 'image.jpg' })
+        axios.post('https://sdksample.qiscus.com/api/v2/mobile/upload',
+          form
+        ,{
+          timeout: 10000
+        })
+        .then((response) => {
+          this.sendMessage(response.data.results.file.url)
+        })
+        .catch(function (error) {
+          ToastAndroid.show(error.message, ToastAndroid.SHORT)
+        })
+      }
     }
   }
   
@@ -170,7 +172,7 @@ class Media extends React.Component {
         <Header
           title={this.state.imageName}
           onLeftPress={() => this.back()}
-          loading={this.state.loading}
+          isLoading={this.state.loading}
         />
         {this.renderImage()}
         {this.renderInput()}
