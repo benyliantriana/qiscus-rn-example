@@ -54,7 +54,8 @@ class ChatList extends React.Component {
       messageReply: '', // message comment that appear before replied
       isReplying: false,
       participants: [],
-      uriImageReplied: '' // uri replied message with image and caption
+      uriImageReplied: '', // uri replied message with image and caption
+      isTyping: false
     } 
   }
 
@@ -70,6 +71,21 @@ class ChatList extends React.Component {
   componentWillMount () {
     // add event emitter for handling new message
     this.emitter.addListener('new message', (params) => this.newMessage(params))
+    this.emitter.addListener('status', (params) => console.log(params))
+    this.emitter.addListener('typing', (params) => {
+      if (this.state.participants.find((data) => data.email === params.username)) {
+        if (params.message === '1') {
+          this.setState({
+            isTyping: true
+          })
+        } else if (params.message === '0') {
+          this.setState({
+            isTyping: false
+          })
+        }
+      }
+      console.log(params)
+    })
 
     qiscus = this.props.qiscus
     qiscus.getRoomById(this.props.id).then(data => {
@@ -261,6 +277,9 @@ class ChatList extends React.Component {
                 value={message}
                 onChangeText={(text) => {
                   if (text.length > 0) { qiscus.publishTyping(1) }
+                  setTimeout(() => {
+                    qiscus.publishTyping(0)
+                  }, 5000)
                   this.setState({ message: text })}
                 }
                 autoCapitalize='none'
@@ -539,7 +558,7 @@ class ChatList extends React.Component {
   }
 
   render () {
-    const { data, loading, photo } = this.state
+    const { data, loading, photo, isTyping } = this.state
     let view, renderDate, renderInput
     if (loading) {
       view = (
@@ -556,6 +575,7 @@ class ChatList extends React.Component {
           title={this.state.name}
           onLeftPress={() => this.backAndroid()}
           showRightButton
+          subtitle={isTyping ? I18n.t('typing') : ''}
           isLoading={loading}
           rightButtonImage={photo}
           onRightPress={() => this.profile()}

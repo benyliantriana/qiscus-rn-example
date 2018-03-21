@@ -83,7 +83,7 @@ export default class Header extends React.Component {
         </View>
       )
     } else {
-      if (this.props.subtitle === I18n.t('online')) {
+      if (this.props.subtitle === I18n.t('online') || this.props.subtitle === I18n.t('typing')) {
         subtitle = (
           <Text style={styles.textOnline}>
             {this.props.subtitle}

@@ -57,6 +57,12 @@ class ChatRoom extends React.Component {
           emitter.emit('new message', comments[0]) // emitter name is new message
         },
         chatRoomCreatedCallback: (data) => {
+        },
+        typingCallback: (data) => {
+          emitter.emit('typing', data)
+        },
+        presenceCallback: (data) => {
+          emitter.emit('status', data)
         }
       }
     })

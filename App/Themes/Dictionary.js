@@ -38,6 +38,7 @@ export default {
     sendMessage: 'Send Message',
     newConversations: 'New Conversation',
     createGroupChat: 'Create Group Chat',
-    contacts: 'CONTACTS'
+    contacts: 'CONTACTS',
+    typing: 'Typing...'
   }
 }
