@@ -58,6 +58,7 @@ class ChatList extends React.Component {
       participants: [],
       uriImageReplied: '', // uri replied message with image and caption
       isTyping: false,
+      isOnline: false,
       sendingMessage: false,
       dataGroup: {
         name: '',
@@ -78,7 +79,7 @@ class ChatList extends React.Component {
   componentWillMount () {
     // add event emitter for handling new message
     this.emitter.addListener('new message', (params) => this.newMessage(params))
-    this.emitter.addListener('status', (params) => console.log(params))
+    this.emitter.addListener('status', (params) => this.handleStatus(params))
     this.emitter.addListener('typing', (params) => this.handleTyping(params))
     // this.emitter.addListener('delivered', (params) => console.log('delivered', params))
     this.emitter.addListener('read', (params) => this.handleReadMessage(params))
@@ -209,6 +210,25 @@ class ChatList extends React.Component {
           })
         }
       }
+    }
+  }
+
+  handleStatus (params) {
+    if (this.state.isActive) {
+      if (String(params).includes('1:')) {
+        this.setState({
+          isOnline: true
+        })
+      } else {
+        this.setState({
+          isOnline: false
+        })
+      }
+      setTimeout(() => {
+        this.setState({
+          isOnline: false
+        })
+      }, 5000)
     }
   }
 
@@ -632,8 +652,8 @@ class ChatList extends React.Component {
   }
 
   render () {
-    const { data, loading, photo, isTyping } = this.state
-    let view, renderDate, renderInput
+    const { data, loading, photo, isTyping, isOnline } = this.state
+    let view, renderDate, renderInput, subtitle
     if (loading) {
       view = (
         <View />
@@ -643,13 +663,20 @@ class ChatList extends React.Component {
       renderDate = data.length > 0 ? this.renderDate() : null
       renderInput = this.renderInput()
     }
+    if (isTyping) {
+      subtitle = I18n.t('typing')
+    } else if (isOnline) {
+      subtitle = I18n.t('online')
+    } else {
+      subtitle = ''
+    }
     return (
       <View style={styles.container}>
         <Header
           title={this.state.name}
           onLeftPress={() => this.backAndroid()}
           showRightButton
-          subtitle={isTyping ? I18n.t('typing') : ''}
+          subtitle={subtitle}
           isLoading={loading}
           rightButtonImage={photo}
           onRightPress={() => this.profile()}

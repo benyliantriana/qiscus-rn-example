@@ -62,8 +62,7 @@ class ChatRoom extends React.Component {
           emitter.emit('typing', data)
         },
         presenceCallback: (data) => {
-          console.log(data)
-          // emitter.emit('status', data)
+          emitter.emit('status', data)
         },
         commentDeliveredCallback: (data) => {
           // emitter.emit('delivered', data)
