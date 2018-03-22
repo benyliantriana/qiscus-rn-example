@@ -5,7 +5,9 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-  ToastAndroid
+  ToastAndroid,
+  Platform,
+  KeyboardAvoidingView
 } from 'react-native'
 
 import axios from 'axios'
@@ -172,6 +174,18 @@ class Media extends React.Component {
       .catch((e) => console.log(e))
   }
 
+  renderContent (content) {
+    if (Platform.OS === 'ios') {
+      return (
+        <KeyboardAvoidingView behavior='padding'>
+          {content}
+        </KeyboardAvoidingView>
+      )
+    } else {
+      return content
+    }
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -181,7 +195,7 @@ class Media extends React.Component {
           isLoading={this.state.loading}
         />
         {this.renderImage()}
-        {this.renderInput()}
+        {this.renderContent(this.renderInput())}
       </View>
     )
   }

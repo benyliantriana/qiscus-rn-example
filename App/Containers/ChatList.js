@@ -12,7 +12,9 @@ import {
   Modal,
   TouchableWithoutFeedback,
   BackHandler,
-  Clipboard
+  Clipboard,
+  Platform,
+  KeyboardAvoidingView
 } from 'react-native'
 import moment from 'moment'
 import { Actions, ActionConst } from 'react-native-router-flux'
@@ -611,6 +613,18 @@ class ChatList extends React.Component {
     })
   }
 
+  renderContent (content) {
+    if (Platform.OS === 'ios') {
+      return (
+        <KeyboardAvoidingView behavior='padding'>
+          {content}
+        </KeyboardAvoidingView>
+      )
+    } else {
+      return content
+    }
+  }
+
   render () {
     const { data, loading, photo, isTyping } = this.state
     let view, renderDate, renderInput
@@ -636,7 +650,7 @@ class ChatList extends React.Component {
         />
         {renderDate}
         {view}
-        {renderInput}
+        {this.renderContent(renderInput)}
         {this.renderModalOptionMessage()}
         {this.renderModalAttachment()}
       </View>

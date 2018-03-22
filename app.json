@@ -5,14 +5,6 @@
       "backgroundColor": "#ffffff",
       "barStyle": "dark-content"
     },
-    "ios": {
-      "bundleIdentifier": "com.qiscus.qiscusrn",
-      "infoPlist": {
-        "NSPhotoLibraryUsageDescription": "qiscus-rn-example photo use",
-        "NSCameraUsageDescription": "qiscus-rn-example camera use",
-        "NSPhotoLibraryAddUsageDescription": "qiscus-rn-example photo use"
-      }
-    },
     "android": {
       "package": "com.qiscus.qiscusrn"
     },
