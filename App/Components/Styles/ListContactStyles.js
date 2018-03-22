@@ -12,10 +12,8 @@ export default StyleSheet.create({
   photo: {
     height: 30,
     width: 30,
-    borderRadius: 160,
     marginRight: 15,
-    paddingBottom: 10,
-    resizeMode: 'cover'
+    paddingBottom: 10
   },
   item: {
     flexDirection: 'row',

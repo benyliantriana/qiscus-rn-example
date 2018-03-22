@@ -55,7 +55,8 @@ class ChatList extends React.Component {
       isReplying: false,
       participants: [],
       uriImageReplied: '', // uri replied message with image and caption
-      isTyping: false
+      isTyping: false,
+      sendingMessage: false
     } 
   }
 
@@ -72,19 +73,9 @@ class ChatList extends React.Component {
     // add event emitter for handling new message
     this.emitter.addListener('new message', (params) => this.newMessage(params))
     this.emitter.addListener('status', (params) => console.log(params))
-    this.emitter.addListener('typing', (params) => {
-      if (this.state.participants.find((data) => data.email === params.username)) {
-        if (params.message === '1') {
-          this.setState({
-            isTyping: true
-          })
-        } else if (params.message === '0') {
-          this.setState({
-            isTyping: false
-          })
-        }
-      }
-    })
+    this.emitter.addListener('typing', (params) => this.handleTyping(params))
+    // this.emitter.addListener('delivered', (params) => console.log('delivered', params))
+    this.emitter.addListener('read', (params) => this.handleReadMessage(params))
 
     qiscus = this.props.qiscus
     qiscus.getRoomById(this.props.id).then(data => {
@@ -170,6 +161,32 @@ class ChatList extends React.Component {
         data: tempData ,
         lastMessageDate: moment(data.timestamp).format('YYYY-MM-DD')
       })
+      }
+    }
+  }
+
+  handleReadMessage (params) {
+    if (params.message !== undefined) {
+      let tempData = [...this.state.data]
+      for (let i = 0; i < tempData.length; i++) {
+        tempData[i].isRead = true
+      }
+      this.setState({
+        data: tempData
+      })
+    }
+  }
+
+  handleTyping (params) {
+    if (this.state.participants.find((data) => data.email === params.username)) {
+      if (params.message === '1') {
+        this.setState({
+          isTyping: true
+        })
+      } else if (params.message === '0') {
+        this.setState({
+          isTyping: false
+        })
       }
     }
   }
@@ -515,30 +532,39 @@ class ChatList extends React.Component {
   }
 
   sendMessage () {
-    const { id, message, firstCommentId, isReplying, nameUserReplied, emailUserReplied, messageReply, idReply } = this.state
-    if (message.length > 0) {
-      if (isReplying) {
-        const payload = {
-          text: message,
-          replied_comment_id: idReply,
-          replied_comment_message: messageReply,
-          replied_comment_payload: null,
-          replied_comment_sender_email: emailUserReplied,
-          replied_comment_sender_username: nameUserReplied,
-          replied_comment_type: 'text'
-        }
-        qiscus.sendComment(id, message, null, 'reply', JSON.stringify(payload))
+    const { id, message, firstCommentId, isReplying, nameUserReplied, emailUserReplied, messageReply, idReply, sendingMessage } = this.state
+    if (!sendingMessage) {
+      if (message.length > 0) {
+        this.setState({
+          sendingMessage: true
+        })
+        if (isReplying) {
+          const payload = {
+            text: message,
+            replied_comment_id: idReply,
+            replied_comment_message: messageReply,
+            replied_comment_payload: null,
+            replied_comment_sender_email: emailUserReplied,
+            replied_comment_sender_username: nameUserReplied,
+            replied_comment_type: 'text'
+          }
+          qiscus.sendComment(id, message, null, 'reply', JSON.stringify(payload))
+            .then(() => {
+              this.setState({ message: '', isReplying: false, sendingMessage: false })
+              qiscus.publishTyping(0)
+            })
+            .catch((e) => ToastAndroid.show(e, ToastAndroid.SHORT))
+        } else {
+          qiscus.sendComment(id, message)
           .then(() => {
-            this.setState({ message: '', isReplying: false })
+            this.setState({ message: '', isReplying: false, sendingMessage: false })
             qiscus.publishTyping(0)
           })
-      } else {
-        qiscus.sendComment(id, message)
-        .then(() => {
-          this.setState({ message: '', isReplying: false })
-          qiscus.publishTyping(0)
-        })
+          .catch((e) => ToastAndroid.show(e, ToastAndroid.SHORT))
+        }
       }
+    } else {
+      ToastAndroid.show(I18n.t('waitingSentMessage'), ToastAndroid.SHORT)
     }
   }
 

@@ -20,8 +20,7 @@ export default StyleSheet.create({
   },
   imageLeft: {
     width: 24,
-    height: 24,
-    resizeMode: 'contain'
+    height: 24
   },
   titleContainer: {
     flex: 8,

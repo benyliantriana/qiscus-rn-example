@@ -40,16 +40,21 @@ class Media extends React.Component {
   async componentDidMount () {
     const type = await this.props.typeAttach
     if (type === 'camera') {
-      this.openCamera()
+      setTimeout(() => {
+        this.openCamera()
+      }, 500)
     } else {
-      this.openGallery()
+      setTimeout(() => {
+        this.openGallery()
+      }, 600)
     }
   }
 
-  async openCamera () {
+  openCamera = async () => {
     let result = await ImagePicker.launchCameraAsync({
       quality: 0.5,
-      aspect: [4, 3]
+      aspect: [4, 3],
+      allowsEditing: true
     })
     this.setState({
       imageUri: result.uri,
@@ -60,11 +65,12 @@ class Media extends React.Component {
     }
   }
 
-  async openGallery () {
+  openGallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       quality: 0.5,
       mediaTypes: 'Images',
-      aspect: [4, 3]
+      aspect: [4, 3],
+      allowsEditing: true
     })
     this.setState({
       imageUri: result.uri,
