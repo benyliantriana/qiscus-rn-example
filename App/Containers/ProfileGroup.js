@@ -30,10 +30,6 @@ class ProfileGroup extends React.Component {
     }
   }
 
-  componentDidMount () {
-    console.log(this.props.data[0])
-  }
-
   qiscus = this.props.qiscus
   emitter = this.props.emitter
 
@@ -87,7 +83,7 @@ class ProfileGroup extends React.Component {
   }
 
   deleteMember (email) {
-    console.log(email)
+    // console.log(email)
   }
 
   render () {

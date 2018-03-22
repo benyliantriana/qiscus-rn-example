@@ -45,7 +45,7 @@ export default class ListContact extends React.PureComponent {
             resizeMode='cover'
             borderRadius={Platform.OS === 'ios' ? 15 : 160}
             placeholderSource={Images.loading}
-            placeholderStyle={styles.photo}
+            placeholderStyle={[styles.photo, { resizeMode: 'cover' }]}
           />
         <View style={styles.item}>
           <View style={{ flexDirection: 'column', flex: 1, marginRight: 15 }}>

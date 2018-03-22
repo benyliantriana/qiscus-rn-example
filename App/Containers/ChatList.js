@@ -126,9 +126,11 @@ class ChatList extends React.Component {
 
   componentDidMount () {
     BackHandler.addEventListener('hardwareBackPress', () => this.backAndroid())
+    this.isMounted = true
   }
 
   componentWillUnmount () {
+    this.isMounted = false
     BackHandler.removeEventListener('hardwareBackPress', () => this.backAndroid())
   }
 
@@ -181,27 +183,31 @@ class ChatList extends React.Component {
   }
 
   handleReadMessage (params) {
-    if (params.message !== undefined) {
-      let tempData = [...this.state.data]
-      for (let i = 0; i < tempData.length; i++) {
-        tempData[i].isRead = true
+    if (this.state.isActive) {
+      if (params.message !== undefined) {
+        let tempData = [...this.state.data]
+        for (let i = 0; i < tempData.length; i++) {
+          tempData[i].isRead = true
+        }
+        this.setState({
+          data: tempData
+        })
       }
-      this.setState({
-        data: tempData
-      })
     }
   }
 
   handleTyping (params) {
-    if (this.state.participants.find((data) => data.email === params.username)) {
-      if (params.message === '1') {
-        this.setState({
-          isTyping: true
-        })
-      } else if (params.message === '0') {
-        this.setState({
-          isTyping: false
-        })
+    if (this.state.isActive) {
+      if (this.state.participants.find((data) => data.email === params.username)) {
+        if (params.message === '1') {
+          this.setState({
+            isTyping: true
+          })
+        } else if (params.message === '0') {
+          this.setState({
+            isTyping: false
+          })
+        }
       }
     }
   }
