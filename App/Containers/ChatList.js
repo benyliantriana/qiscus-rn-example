@@ -56,7 +56,11 @@ class ChatList extends React.Component {
       participants: [],
       uriImageReplied: '', // uri replied message with image and caption
       isTyping: false,
-      sendingMessage: false
+      sendingMessage: false,
+      dataGroup: {
+        name: '',
+        photo: ''
+      }
     } 
   }
 
@@ -81,6 +85,15 @@ class ChatList extends React.Component {
     qiscus.getRoomById(this.props.id).then(data => {
       try {
         const reversedData = data.comments.length > 0 ? [...data.comments].reverse() : []
+        if (this.props.typeRoom === 'group') {
+          let tempDataGroup = {
+            name: this.props.roomName,
+            photo: data.avatar
+          }
+          this.setState({
+            dataGroup: tempDataGroup
+          })
+        }
         this.setState({
           data: reversedData,
           loading: false,
@@ -211,14 +224,30 @@ class ChatList extends React.Component {
    */
 
   profile () {
-    const { type, participants, email } = this.state
+    const { type, participants, email, dataGroup } = this.state
     let index = participants[0].email === email ? 1 : 0
-    Actions.profile({
-      type: ActionConst.PUSH,
-      typeProfile: 'other',
-      data: participants[index],
-      emitter: this.emitter
-    })
+    switch (type) {
+      case 'single':
+        Actions.profile({
+          type: ActionConst.PUSH,
+          typeProfile: 'other',
+          data: participants[index],
+          emitter: this.emitter,
+          qiscus: this.qiscus
+        })
+        break
+      case 'group':
+        Actions.profilegroup({
+          type: ActionConst.PUSH,
+          data: participants,
+          emitter: this.emitter,
+          qiscus: this.qiscus,
+          dataGroup: dataGroup
+        })
+        break
+      default:
+        break
+    }
   }
 
   renderList () {

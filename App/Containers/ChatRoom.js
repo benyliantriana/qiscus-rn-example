@@ -174,7 +174,13 @@ class ChatRoom extends React.Component {
         <View />
       )
     } else {
-      view = data.length > 1 ? this.renderList() : <EmptyState type='room' showButton />
+      view = data.length > 1 ? this.renderList() :
+        <EmptyState
+          type='room'
+          showButton
+          qiscus={qiscus}
+          emitter={emitter}
+        />
     }
     return (
       <View style={styles.container}>

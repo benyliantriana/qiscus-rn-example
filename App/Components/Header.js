@@ -70,13 +70,13 @@ export default class Header extends React.Component {
       <View style={styles.leftContainer}>
         <TouchableOpacity onPress={() => this.props.onLeftPress()}>
           <ImageLoad
-            style={[styles.imageLeft]}
+            style={styles.imageLeft}
             source={image}
             isShowActivity={false}
             resizeMode='contain'
             borderRadius={roundImage.borderRadius}
-            placeholderSource={Images.loading}
-            placeholderStyle={[styles.imageLeft, roundImage]}
+            placeholderSource={null}
+            placeholderStyle={styles.imageLeft}
           />
         </TouchableOpacity>
       </View>
@@ -148,8 +148,8 @@ export default class Header extends React.Component {
             isShowActivity={false}
             resizeMode={roundImage.resizeMode}
             borderRadius={roundImage.borderRadius}
-            placeholderSource={Images.loading}
-            placeholderStyle={[styles.imageLeft, roundImage]}
+            placeholderSource={null}
+            placeholderStyle={styles.imageLeft}
           />
         </TouchableOpacity>
       )

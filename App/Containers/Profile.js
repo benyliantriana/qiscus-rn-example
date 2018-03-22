@@ -24,7 +24,7 @@ class Profile extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      typeProfile: this.props.typeProfile, // self, other, groups
+      typeProfile: this.props.typeProfile, // self, other
       data: this.props.data // data profile
     }
   }
@@ -132,9 +132,10 @@ class Profile extends React.Component {
   }
 
   render () {
+    const { typeProfile } = this.state
     return (
       <View style={styles.container}>
-        <Header title={I18n.t('profile')} />
+        <Header title={typeProfile === 'self' ? I18n.t('profile') : this.props.data.username} />
         {this.renderPhoto()}
         {this.renderInformation()}
         {this.renderLogoutButton()}
