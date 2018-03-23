@@ -6,7 +6,7 @@ export default StyleSheet.create({
     height: Platform.OS === 'ios' ? 64 : 54,
     padding: 10,
     paddingBottom: 0,
-    paddingTop: Platform.OS === 'ios' ? 10 : 0,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: Colors.background,

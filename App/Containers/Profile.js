@@ -32,6 +32,15 @@ class Profile extends React.Component {
   qiscus = this.props.qiscus
   emitter = this.props.emitter
 
+  getRoomInfo () {
+    // used to refresh profile after edit it
+    qiscus.getRoomsInfo({room_ids: [this.props.id]}).then(res => {
+      console.log('room info ', res.results.rooms_info.participants)
+    }, err => {
+      console.log(err)
+    })
+  }
+
   renderPhoto () {
     const { data, typeProfile } = this.state
     let changePhotoButton = typeProfile === 'self' ? (
@@ -51,7 +60,12 @@ class Profile extends React.Component {
   }
 
   renderInformation () {
-    const { data } = this.state
+    const { data, typeProfile } = this.state
+    let editName = typeProfile === 'self' ? (
+      <TouchableOpacity onPress={() => {}}>
+        <Image source={Images.edit} style={styles.icon} />
+      </TouchableOpacity>
+    ) : null
     return (
       <View style={styles.infoContainer}>
         <Text style={styles.textLabel}>{I18n.t('information')}</Text>
@@ -59,9 +73,7 @@ class Profile extends React.Component {
           <View style={styles.nameContainer}>
             <Image source={Images.contact} style={styles.icon} />
             <Text style={styles.textData}>{data.username}</Text>
-            <TouchableOpacity onPress={() => {}}>
-              <Image source={Images.edit} style={styles.icon} />
-            </TouchableOpacity>
+            {editName}
           </View>
           <View style={{ height: 20 }} />
           <View style={styles.nameContainer}>

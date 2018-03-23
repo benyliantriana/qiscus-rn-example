@@ -48,7 +48,6 @@ class ChatList extends React.Component {
       lastCommentId: -1,
       firstCommentId: -1,
       loadmore: true,
-      callback: this.props.callback,
       isActive: true,
       idReply: -1, // id comment that will be replied
       nameUserReplied: '', // name of user replied
@@ -68,6 +67,7 @@ class ChatList extends React.Component {
   }
 
   emitter = this.props.emitter // receiving props emitter from ChatRoom.js (romm list)
+  qiscus = this.props.qiscus
 
   /**
    * array chat is reversed, and flatlist will show it in reversed too
@@ -83,8 +83,10 @@ class ChatList extends React.Component {
     this.emitter.addListener('typing', (params) => this.handleTyping(params))
     // this.emitter.addListener('delivered', (params) => console.log('delivered', params))
     this.emitter.addListener('read', (params) => this.handleReadMessage(params))
+    this.loadRoom()
+  }
 
-    qiscus = this.props.qiscus
+  loadRoom () {
     qiscus.getRoomById(this.props.id).then(data => {
       try {
         const reversedData = data.comments.length > 0 ? [...data.comments].reverse() : []
@@ -140,8 +142,7 @@ class ChatList extends React.Component {
       isActive: false
     })
     Actions.chatroom({
-      type: ActionConst.POP_TO,
-      refresh: { callback: !this.state.callback } // trigger for componentWillReceiveProps in chatroom
+      type: ActionConst.POP_TO
     })
     return true // to prevent apps to exit
   }
@@ -224,11 +225,6 @@ class ChatList extends React.Component {
           isOnline: false
         })
       }
-      setTimeout(() => {
-        this.setState({
-          isOnline: false
-        })
-      }, 5000)
     }
   }
 
@@ -261,7 +257,8 @@ class ChatList extends React.Component {
           typeProfile: 'other',
           data: participants[index],
           emitter: this.emitter,
-          qiscus: this.qiscus
+          qiscus: this.qiscus,
+          id: this.state.id
         })
         break
       case 'group':
@@ -270,7 +267,8 @@ class ChatList extends React.Component {
           data: participants,
           emitter: this.emitter,
           qiscus: this.qiscus,
-          dataGroup: dataGroup
+          dataGroup: dataGroup,
+          id: this.state.id
         })
         break
       default:
