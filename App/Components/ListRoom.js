@@ -53,7 +53,7 @@ export default class ListRoom extends React.PureComponent {
       )
     }
 
-    let extImage = ['jpg','gif','jpeg','png', 'JPG', 'GIF', 'JPEG', 'PNG']
+    let extImage = ['.jpg','.gif','.jpeg','.png', '.JPG', '.GIF', '.JPEG', '.PNG']
     let isImage = extImage.find((data) => this.props.lastMessage.includes(data))
     if (isImage) {
       lastMessage = I18n.t('image')

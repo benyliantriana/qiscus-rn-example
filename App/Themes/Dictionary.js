@@ -42,6 +42,9 @@ export default {
     typing: 'Typing...',
     waitingSentMessage: 'Waiting for previous message sent',
     roomInfo: 'Room Info',
-    participants: 'PARTICIPANTS'
+    participants: 'PARTICIPANTS',
+    chooseContacts: 'Choose Contacts',
+    search: 'Search',
+    groupInfo: 'Group Info'
   }
 }

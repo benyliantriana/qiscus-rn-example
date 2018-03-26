@@ -36,6 +36,16 @@ class Login extends React.Component {
     }
   }
 
+  componentDidMount () {
+    qiscus.init({
+      AppId: 'sampleapp-65ghcsaysse',
+      options: {
+        loginSuccessCallback: (data) => this.successLogin(data), // if login / register is success
+        loginErrorCallback: (data) => this.errorLogin(data) // if login / register is failed
+      }
+    })
+  }
+
   renderLogo () {
     return (
       <View style={styles.logoContainer}>
@@ -108,13 +118,6 @@ class Login extends React.Component {
     } else if (displayName.length < 1) {
       ToastAndroid.show(I18n.t('invalidDisplayName'), ToastAndroid.SHORT)
     } else {
-      qiscus.init({
-        AppId: 'sampleapp-65ghcsaysse',
-        options: {
-          loginSuccessCallback: (data) => this.successLogin(data), // if login / register is success
-          loginErrorCallback: (data) => this.errorLogin(data) // if login / register is failed
-        }
-      })
       this.setState({ loading: true }) // set the button to loading state
       qiscus.setUser(email, key, displayName, null)
     }

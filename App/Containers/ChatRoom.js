@@ -53,7 +53,6 @@ class ChatRoom extends React.Component {
       options: {
         newMessagesCallback: (comments) => {
           this.loadRoom()
-          console.log('new message')
           emitter.emit('new message', comments[0]) // emitter name is new message
         },
         chatRoomCreatedCallback: (data) => {

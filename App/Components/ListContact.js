@@ -32,6 +32,10 @@ export default class ListContact extends React.PureComponent {
   }
 
   render () {
+    const { isChecking, isCreatingGroup } = this.props
+    let renderCheck = isCreatingGroup && isChecking ? (
+      <Image source={Images.isChecking} style={styles.iconCheck} />
+    ) : null
     return (
       <TouchableOpacity
         style={styles.itemContainer}
@@ -51,6 +55,7 @@ export default class ListContact extends React.PureComponent {
           <View style={{ flexDirection: 'column', flex: 1, marginRight: 15 }}>
             <Text style={styles.textName}>{this.props.name}</Text>
           </View>
+          {renderCheck}
         </View>
       </TouchableOpacity>
     )
