@@ -33,12 +33,20 @@ class CreateGroup extends React.Component {
       name: '',
       photo: '',
       loading: false,
-      openModal: false
+      openModal: false,
+      email: ''
     }
   }
 
   qiscus = this.props.qiscus
   emitter = this.props.emitter
+
+  componentDidMount () {
+    let data = qiscus.userData
+    this.setState({
+      email: data.email
+    })
+  }
 
   renderInfoGroup () {
     const { name, photo } = this.state
@@ -205,14 +213,65 @@ class CreateGroup extends React.Component {
     }
   }
 
+  uploadImage () {
+    const { data, name, photo } = this.state
+    let tempData = []
+    for (let i = 0; i < data.length; i++) {
+      tempData.push(data[i].email)
+    }
+    if (name !== '' && photo.length > 1) {
+      this.setState({ loading: true })
+        const form = new FormData()
+        form.append('file', { uri: photo, type: 'image/jpg', name: 'image.jpg' })
+        axios.post('https://sdksample.qiscus.com/api/v2/mobile/upload',
+          form
+        ,{
+          timeout: 10000
+        })
+        .then((response) => {
+          this.createGroup(tempData, name, response.data.results.file.url)
+        })
+        .catch(function (error) {
+          ToastAndroid.show(error.message, ToastAndroid.SHORT)
+        })
+    }
+  }
+
+  createGroup (data, name, imageUri) {
+    let options = {
+      avatar_url: imageUri
+    }
+    qiscus.createGroupRoom(name, data, options)
+        .then(result => {
+          Actions.chatlist({
+            type: ActionConst.PUSH,
+            id: result.id,
+            roomName: result.name,
+            email: this.state.email,
+            typeRoom: 'group',
+            qiscus: this.qiscus,
+            emitter: this.emitter
+          })
+          this.setState({
+            loading: false
+          })
+        }, err => {
+          this.setState({
+            loading: false
+          })
+          console.log(err)
+        })
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <Header
           title={I18n.t('groupInfo')}
           showRightButton
-          loading={this.state.loading}
+          isLoading={this.state.loading}
           rightButtonImage={Images.check}
+          onRightPress={() => this.uploadImage()}
         />
         {this.renderInfoGroup()}
         {this.renderParticipants()}

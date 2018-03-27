@@ -56,6 +56,7 @@ class ChatRoom extends React.Component {
           emitter.emit('new message', comments[0]) // emitter name is new message
         },
         chatRoomCreatedCallback: (data) => {
+          this.loadRoom()
         },
         typingCallback: (data) => {
           emitter.emit('typing', data)
@@ -145,7 +146,6 @@ class ChatRoom extends React.Component {
       email: this.state.email,
       typeRoom: typeRoom,
       qiscus: qiscus,
-      comments: this.state.comments,
       emitter: emitter // proping emitter for chat list component
     })
   }
