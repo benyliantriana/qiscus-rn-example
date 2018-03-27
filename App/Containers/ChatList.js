@@ -63,7 +63,8 @@ class ChatList extends React.Component {
         name: '',
         photo: ''
       },
-      pendingMessage: false
+      pendingMessage: false,
+      callback: true
     } 
   }
 
@@ -84,6 +85,17 @@ class ChatList extends React.Component {
     this.emitter.addListener('typing', (params) => this.handleTyping(params))
     this.emitter.addListener('read', (params) => this.handleReadMessage(params))
     this.loadRoom()
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { callback, type } = this.state
+    if (type === 'group') {
+      if (nextProps.callback !== callback) {
+        this.setState({
+          callback: nextProps.callback
+        })
+      }
+    }
   }
 
   loadRoom () {
@@ -272,7 +284,8 @@ class ChatList extends React.Component {
           emitter: this.emitter,
           qiscus: this.qiscus,
           dataGroup: dataGroup,
-          id: this.state.id
+          id: this.state.id,
+          callback: this.state.callback
         })
         break
       default:
