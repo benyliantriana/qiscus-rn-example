@@ -58,6 +58,7 @@ class Login extends React.Component {
     const { email, displayName, key } = this.state
     return (
       <View style={{ flexDirection: 'column' }}>
+        <View style={{ marginTop: 20 }} />
         <TextInputLogin
           label={I18n.t('email')}
           value={email}

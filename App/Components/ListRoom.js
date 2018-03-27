@@ -70,13 +70,13 @@ export default class ListRoom extends React.PureComponent {
         onPress={() => this.props.onPress()}
       >
         <ImageLoad
-            style={styles.photo}
-            source={{ uri: this.props.avatar }}
-            isShowActivity={false}
-            resizeMode='cover'
-            borderRadius={20}
-            placeholderSource={Images.loading}
-            placeholderStyle={styles.photo}
+          style={styles.photo}
+          source={{ uri: this.props.avatar }}
+          isShowActivity={false}
+          resizeMode='cover'
+          borderRadius={20}
+          placeholderSource={Images.loading}
+          placeholderStyle={styles.photo}
         />
         <View style={styles.item}>
           <View style={{ flexDirection: 'column', flex: 1, marginRight: 15 }}>

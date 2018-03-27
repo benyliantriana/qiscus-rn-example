@@ -178,6 +178,7 @@ class Contact extends React.Component {
         onPress={() => this.onPress(item.email, index)}
         isChecking={item.isChecking}
         isCreatingGroup={isCreatingGroup}
+        type='add'
       />
     )
   }
@@ -258,12 +259,14 @@ class Contact extends React.Component {
 
   createGroup () {
     const { dataGroup } = this.state
-    Actions.creategroup({
-      type: ActionConst.PUSH,
-      data: dataGroup,
-      emitter: this.emitter,
-      qiscus: this.qiscus
-    })
+    if (dataGroup.length > 0) {
+      Actions.creategroup({
+        type: ActionConst.PUSH,
+        data: dataGroup,
+        emitter: this.emitter,
+        qiscus: this.qiscus
+      })
+    }
   }
 
   /**

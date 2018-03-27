@@ -45,6 +45,7 @@ export default {
     participants: 'PARTICIPANTS',
     chooseContacts: 'Choose Contacts',
     search: 'Search',
-    groupInfo: 'Group Info'
+    groupInfo: 'Group Info',
+    groupName: 'Group Name'
   }
 }
