@@ -49,6 +49,7 @@ export default {
     groupName: 'Group Name',
     deleteMember: 'Do you want delete "{{name}}"\nfrom group "{{roomName}}"?',
     yes: 'YES',
-    no: 'NO'
+    no: 'NO',
+    addParticipant: 'Add Participant'
   }
 }
