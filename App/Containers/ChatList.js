@@ -239,8 +239,6 @@ class ChatList extends React.Component {
         })
       } else if (String(params).includes('0:')) {
         let tempTimestamp = await String(params.substring(2, params.length))
-        console.log(params)
-        console.log(tempTimestamp)
         this.setState({
           isOnline: false,
           lastSeen: I18n.t('lastSeen') + moment(parseInt(tempTimestamp)).format('HH:mm A')

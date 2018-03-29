@@ -129,7 +129,6 @@ class Login extends React.Component {
   async successLogin (data) {
     let platform = Platform.OS === 'ios' ? 'ios' : 'android'
     let tokenType = Platform.OS === 'ios' ? 'ios device_token' : 'fcm_token'
-    console.log('token: ', qiscus.userData.token)
 
     axios.post(baseUri + '/api/v2/mobile/set_user_device_token',
       {
