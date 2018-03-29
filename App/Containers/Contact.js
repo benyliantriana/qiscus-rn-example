@@ -250,10 +250,22 @@ class Contact extends React.Component {
         })
       }
     } else {
-      qiscus.chatTarget(email)
-      .then(result => {
-        this.openChat(result)
-      }, err => console.log(err))
+      let myEmail = qiscus.userData.email
+      if (myEmail === email) {
+        let data = qiscus.userData
+        Actions.profile({
+          type: ActionConst.PUSH,
+          typeProfile: 'self',
+          qiscus: qiscus,
+          data: data,
+          emitter: this.emitter
+        })
+      } else {
+        qiscus.chatTarget(email)
+        .then(result => {
+          this.openChat(result)
+        }, err => console.log(err))
+      }
     }
   }
 
