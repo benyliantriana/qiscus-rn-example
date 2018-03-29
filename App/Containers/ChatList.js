@@ -64,7 +64,8 @@ class ChatList extends React.Component {
         photo: ''
       },
       pendingMessage: false,
-      callback: true
+      callback: true,
+      lastSeen: ''
     } 
   }
 
@@ -230,15 +231,19 @@ class ChatList extends React.Component {
     }
   }
 
-  handleStatus (params) {
+  async handleStatus (params) {
     if (this.state.isActive) {
       if (String(params).includes('1:')) {
         this.setState({
           isOnline: true
         })
-      } else {
+      } else if (String(params).includes('0:')) {
+        let tempTimestamp = await String(params.substring(2, params.length))
+        console.log(params)
+        console.log(tempTimestamp)
         this.setState({
-          isOnline: false
+          isOnline: false,
+          lastSeen: I18n.t('lastSeen') + moment(parseInt(tempTimestamp)).format('HH:mm A')
         })
       }
     }
@@ -732,7 +737,7 @@ class ChatList extends React.Component {
   }
 
   render () {
-    const { data, loading, photo, isTyping, isOnline } = this.state
+    const { data, loading, photo, isTyping, isOnline, type, lastSeen } = this.state
     let view, renderDate, renderInput, subtitle
     if (loading) {
       view = (
@@ -744,11 +749,11 @@ class ChatList extends React.Component {
       renderInput = this.renderInput()
     }
     if (isTyping) {
-      subtitle = I18n.t('typing')
+      subtitle = type === 'single' ? I18n.t('typing') : I18n.t('groupTyping')
     } else if (isOnline) {
       subtitle = I18n.t('online')
     } else {
-      subtitle = ''
+      subtitle = lastSeen
     }
     return (
       <View style={styles.container}>

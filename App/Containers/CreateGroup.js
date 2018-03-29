@@ -219,7 +219,7 @@ class CreateGroup extends React.Component {
     for (let i = 0; i < data.length; i++) {
       tempData.push(data[i].email)
     }
-    if (name !== '' && photo.length > 1) {
+    if (name !== '' && photo.length > 0) {
       this.setState({ loading: true })
         const form = new FormData()
         form.append('file', { uri: photo, type: 'image/jpg', name: 'image.jpg' })

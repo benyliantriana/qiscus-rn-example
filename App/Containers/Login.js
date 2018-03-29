@@ -15,7 +15,7 @@ import { Actions, ActionConst } from 'react-native-router-flux'
 import axios from 'axios'
 import { Images, Dictionary } from '../Themes'
 import qiscus from '../../libs/SDKCore'
-import { baseUri, qiscusSecret } from '../config'
+import { baseUri } from '../config'
 
 /**
  * import component

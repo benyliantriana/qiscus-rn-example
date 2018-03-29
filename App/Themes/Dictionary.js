@@ -40,6 +40,8 @@ export default {
     createGroupChat: 'Create Group Chat',
     contacts: 'CONTACTS',
     typing: 'Typing...',
+    groupTyping: 'Someone is typing...',
+    lastSeen: 'Last seen ',
     waitingSentMessage: 'Waiting for previous message sent',
     roomInfo: 'Room Info',
     participants: 'PARTICIPANTS',
