@@ -141,7 +141,6 @@ class ChatList extends React.Component {
           participants: data.participants
         })
       } catch (e) {
-        ToastAndroid.show(String(e), ToastAndroid.SHORT)
         this.setState({
           data: [],
           loading: false,
@@ -257,7 +256,12 @@ class ChatList extends React.Component {
           isOnline: true
         })
       } else if (String(params).includes('0:')) {
-        let tempTimestamp = await String(params.substring(2, params.length))
+        let tempTimestamp
+        if (String(params).includes('/s')) {
+          tempTimestamp = await String(params.substring(2, params.length - 2))
+        } else {
+          tempTimestamp = await String(params.substring(2, params.length))
+        }
         this.setState({
           isOnline: false,
           lastSeen: I18n.t('lastSeen') + moment(parseInt(tempTimestamp)).format('HH:mm A')
