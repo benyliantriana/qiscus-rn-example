@@ -16,7 +16,7 @@ import axios from 'axios'
 
 import { Actions, ActionConst } from 'react-native-router-flux'
 import { Images, Dictionary, Colors } from '../Themes'
-import { baseUri, qiscusSecret } from '../config'
+import { baseUri, qiscusSecret, baseUriContact } from '../config'
 
 /**
  * import component
@@ -32,7 +32,6 @@ class Contact extends React.Component {
     super(props)
     this.state = {
       loading: true,
-      uri: 'https://dashboard-sample.herokuapp.com/api/contacts?limit=10&page=',
       data: [],
       dataGroup: [],
       page: 1,
@@ -84,13 +83,13 @@ class Contact extends React.Component {
   }
 
   async loadContact () {
-    const { uri, page, loadmore, loading, gettingData, dataGroup } = this.state
+    const { page, loadmore, loading, gettingData, dataGroup } = this.state
     if (!loading || gettingData) {
       if (loadmore) {
         this.setState({
           loading: true
         })
-        await axios.get(uri + page)
+        await axios.get(baseUriContact + page)
         .then(response => {
           let data = response.data.results.users
           let tempData = []
