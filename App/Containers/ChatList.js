@@ -258,7 +258,7 @@ class ChatList extends React.Component {
       } else if (String(params).includes('0:')) {
         let tempTimestamp
         if (String(params).includes('/s')) {
-          tempTimestamp = await String(params.substring(2, params.length - 2))
+          tempTimestamp = await String(params.substring(2, 9))
         } else {
           tempTimestamp = await String(params.substring(2, params.length))
         }
