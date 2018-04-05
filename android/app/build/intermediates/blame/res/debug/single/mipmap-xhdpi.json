@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/notification.png",
+        "source": "/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/src/main/res/mipmap-xhdpi/notification.png"
+    },
+    {
+        "merged": "/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/skyshi/Skyshi/qiscusrn/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/skyshi/Skyshi/qiscus/merge-qiscus/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/skyshi/Skyshi/qiscus/merge-qiscus/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/notification.png",
+        "source": "/Users/skyshi/Skyshi/qiscusrn/android/app/src/main/res/mipmap-xhdpi/notification.png"
+    },
+    {
+        "merged": "/Users/skyshi/Skyshi/qiscus/merge-qiscus/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/notification.png",
+        "source": "/Users/skyshi/Skyshi/qiscus/merge-qiscus/android/app/src/main/res/mipmap-xhdpi/notification.png"
+    }
+]
