@@ -1,0 +1,22 @@
+dependencies: \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Modules/RCTDevSettings.mm \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Modules/RCTDevSettings.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Modules/RCTJSCSamplingProfiler.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/DevSupport/RCTPackagerClient.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/DevSupport/RCTPackagerConnection.h \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/React/DevSupport/RCTInspectorDevServerHelper.h

@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.2.0_db0835dea4a778f529e0238a79819e3792138313.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2430e711762a749feb00b3d64858ca4768251b9d">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-11.0.4_e8bc8e597eacf6eab9b2f1f9fa6d9099c7c60cd3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e5b429c146094a612134910688d169ec08deeefb">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-11.0.4_7356b3820a26efc849be609412010cdfe6ce6bfc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.2.0_285dfb4af2e2c57c331fe7fb054e992a223d849c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/me.leolin/ShortcutBadger/1.1.17/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="248218f163235e6d2a81188eaa1db0ec61193055">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/me.leolin-ShortcutBadger-1.1.17_ad03c87908d84ed3f97733292b7a501a48d417e8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_63b2a262f41a25f8ac86e8563ff698020d59443f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_bace35a09c92279def70fc5482b18d105bffada8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_18139c0ddddd580fd60ff201e45205b3b0a5ccab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_c2d2fc872d5a96c7ac5ce69ea193f68ecbfff2ce.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.2.0_061c3d0bf2f30d8f3ce544ecd3b18929cfd24118.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e1625e48a836779b5fa141d22e5d05563aaccc9a">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-11.0.4_67364dd950642cd26572031156aba7b3deb22a6d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.2.0_c2ec9308f83c6b4cac51bae4f398ba952f400ffa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.2.0_43d41204dd71978600de060198ba2d6b65ce3cdf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_53f117d8fd893b07373044e7fc90744acdf1a09c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ed87ccdcb70c17d71ba4e6e4ac16afa62d3c49fb">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-11.0.4_12fee732e67ee8e8dfb20d1fa563c16ad9a24b73.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e5b429c146094a612134910688d169ec08deeefb">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-11.0.4_9f81b2f058c72a1fd5dc12f0cd7d239443968081.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/qiscusrn/react-native-i18n/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="127359a6f59c3a88f1c15cb73a71ce24602f4f10">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/qiscusrn-react-native-i18n-unspecified_47001432a08ce9298ebe29e86f9bc5920362c8bd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.2.0_abbd9494bfd146ef0e2014ae49d41ee525538a05.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/qiscusrn/react-native-vector-icons/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f2cf527de8d0bd35d72088fafea02395ba4a9eec">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/qiscusrn-react-native-vector-icons-unspecified_f507074e1c735f687da2cf7d78b51ef9c1a15a5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/qiscusrn/react-native-image-picker/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="efeb573638d6b2c0d30fbf3e60641272600cf3fe">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/qiscusrn-react-native-image-picker-unspecified_87abb5b8e4e9874fcdce4aeb515adab181623a99.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e1625e48a836779b5fa141d22e5d05563aaccc9a">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-11.0.4_c8eb20773e316cef110229c0a46a1faa83544917.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2430e711762a749feb00b3d64858ca4768251b9d">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-11.0.4_d78053eff003236affee813eb412c32875d3b1db.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.2.0_e2ff0e67bea9a906d17863947990aeac7bf8f710.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.0.1_23a69202c998ccbb40ed50d4df40efffc5c64a80.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.2.0/support-annotations-25.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/support-annotations-25.2.0_5cdde0162e3690e37e85164181731d7c14a234ed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_c8520b3d25a14fe72c249fbb39532f3ac622c4cb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_ebaa481e5a91494c66ec757a90f5990ebaf6f0a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.52.3/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9755c624eb5e74e09e1ad8472b57a9022ed48cfd">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.52.3_769e2ca73ea719c678333f95288f9e84cdb8d1a1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_ad8d8a153ae416effd2db8cc265fa3e0dc62b41a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.52.3/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9755c624eb5e74e09e1ad8472b57a9022ed48cfd">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.52.3_eab1286b4e00a7d6157249f4b892f8baf11ad07f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/me.leolin/ShortcutBadger/1.1.17/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="248218f163235e6d2a81188eaa1db0ec61193055">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/me.leolin-ShortcutBadger-1.1.17_16a919539174c873a3811a211a8057d1338aaa4e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.0.1_ba673ba0dee4390b7c27b8e178e93405f627bee3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/qiscusrn/react-native-fcm/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="08bdedc0d7769eeb26e943a20e57762bfeff3c44">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/qiscusrn-react-native-fcm-unspecified_767ad305d72dd91356f1b931c4ceadcddf88b1fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_b2c2101a73154ef0791576387fd913848bb122bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/qiscusrn/react-native-i18n/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="127359a6f59c3a88f1c15cb73a71ce24602f4f10">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/qiscusrn-react-native-i18n-unspecified_d96792aef07c623458c7e35b151c8beda84b3871.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.2.0_288445b21e8858910921a4e9a2dde4bb0449dc38.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="364364bf77b4a71afc5930fc3ae57b3f0eea637c">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-11.0.4_ea220f50111b11c780aa20f9fcb67dce91ffce1c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_9a10f41e736d34a316132d78e72e40c9f66f1ce0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/qiscusrn/react-native-vector-icons/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f2cf527de8d0bd35d72088fafea02395ba4a9eec">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/qiscusrn-react-native-vector-icons-unspecified_13a702ffbfc405ec8ad7051c521a0e67514a25dd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_607eedf37b2125995e35dae8522653ad5f1a8365.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_898ad3cdd4805ae38d48ef55ef91333999c9f8fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_75c1dedfa9480eb7bcdacf630d8bd1e570f391d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_16487797b1ad23ac14543de28bbe97f9c4c025f3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/qiscusrn/react-native-image-picker/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="efeb573638d6b2c0d30fbf3e60641272600cf3fe">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/qiscusrn-react-native-image-picker-unspecified_69acea76cd703b44ee1291873deee7b855246f21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="364364bf77b4a71afc5930fc3ae57b3f0eea637c">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-11.0.4_8f4c2ff2866ab3b2c810a0bb7d2315f10116f853.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_a1d7e01b6314231fcb189cf4c695dd185df010d1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f47f4d5bdfd7d7bf330945b8a7ccce4ab437a710">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-messaging-11.0.4_4739fa43d11fa280c57cda270c5f4bcd917a0bb8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="43e9789bd3240271265ab30ce1be9f224843f5a8">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-11.0.4_5d9f6ee4975d059e919cf41b359991348f166956.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_c750d1f0061dd4fadefcd9f14a80c8760b83df82.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_00cf90effa52c964134d4842d3b0dbf161e3663e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_b46e5741759f7e57833cc1fb1589e444feaceece.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="43e9789bd3240271265ab30ce1be9f224843f5a8">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-11.0.4_42e090ef003b93b123bddd2f7b5ee3cd44301c05.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f47f4d5bdfd7d7bf330945b8a7ccce4ab437a710">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-messaging-11.0.4_9e059930940106e1f698ff412dfdca9805e6f6a6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.2.0_d0982c286691cbca8b81047c64b74cae4cd0ceff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_422cacdab4e4ce3e43de1dc3baca6586354c2d88.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.2.0_37ca94af4dd3c279682841e6de673c437eaa791b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_8ac0c20aea0dd98ad2d938e8dfedee22a8e18873.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/11.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ed87ccdcb70c17d71ba4e6e4ac16afa62d3c49fb">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-11.0.4_b90a2162733bd651986fc13f64fc9808f270698c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.2.0_ec911a70ebf64a0ad5169e390de400348a3a2488.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_eb6d921ca4857216f781ca471c6d7aabff990184.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/qiscusrn/react-native-fcm/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="08bdedc0d7769eeb26e943a20e57762bfeff3c44">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/qiscusrn-react-native-fcm-unspecified_6e45b02ddf311d963079cec4020b8e564e65ea2f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.52.3/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_15187305e1c8e6cc0afd3e6b6b8b55aa442f6a1d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_4da24bd38ae85678420e382ead839de65f824925.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.2.0_f2dfd623833ca43327914d585a94450b2fac45f6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/Users/skyshi/Skyshi/qiscusrn/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_b42c234b64b78c3052e10ad2186504c102483889.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.52.3/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/skyshi/Skyshi/qiscus/qiscus-rn-example/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_e11d2a11280f9e730753d4237e0cf3f2a733ed66.jar" />
+    </item>
+
+</items>

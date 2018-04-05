@@ -1,0 +1,15 @@
+dependencies: \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBRootObject.m \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Target\ Support\ Files/Protobuf/Protobuf-prefix.pch \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBRootObject_PackagePrivate.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBRootObject.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBDescriptor.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBRuntimeTypes.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBBootstrap.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBExtensionRegistry.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBUtilities_PackagePrivate.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBUtilities.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBArray.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBMessage.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBDescriptor_PackagePrivate.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/Pods/Protobuf/objectivec/GPBWireFormat.h

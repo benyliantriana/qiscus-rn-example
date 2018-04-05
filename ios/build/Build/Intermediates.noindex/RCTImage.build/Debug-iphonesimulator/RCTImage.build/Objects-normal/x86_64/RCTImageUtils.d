@@ -1,0 +1,16 @@
+dependencies: \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/Libraries/Image/RCTImageUtils.m \
+  /Users/skyshi/Skyshi/qiscusrn/node_modules/react-native/Libraries/Image/RCTImageUtils.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTResizeMode.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/skyshi/Skyshi/qiscusrn/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h
