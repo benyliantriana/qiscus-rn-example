@@ -31,6 +31,21 @@ const emitter = new EventEmitter()
 I18n.locale = 'en'
 I18n.translations = Dictionary
 
+/**
+ * this is the code for handling fcm from background
+ */
+
+FCM.on(FCMEvent.Notification, async (notif) => {
+  console.log(notif)
+  const data = {
+    click_action: notif.type,
+    body: notif
+  }
+  if (notif.opened_from_tray) {
+    // if notification click from tray
+  }
+})
+
 class ChatRoom extends React.Component {
   constructor (props) {
     super(props)
@@ -43,9 +58,21 @@ class ChatRoom extends React.Component {
     }
   }
 
+  /**
+   * this is the code for handling fcm from forground
+   */
+
   componentWillMount () {
     this.init()
     this.loadRoom()
+
+    FCM.getInitialNotification().then(notif => {
+      console.log(notif)
+      const data = {
+        click_action: notif.type,
+        body: notif
+      }
+    })
   }
 
   init () {
