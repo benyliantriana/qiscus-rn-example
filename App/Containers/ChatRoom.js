@@ -34,7 +34,7 @@ I18n.locale = 'en'
 I18n.translations = Dictionary
 
 /**
- * this is the code for handling fcm from background
+ * this is the code for handling fcm from foreground
  */
 
 FCM.on(FCMEvent.Notification, async (notif) => {
@@ -61,7 +61,7 @@ class ChatRoom extends React.Component {
   }
 
   /**
-   * this is the code for handling fcm from forground
+   * this is the code for handling fcm from background
    */
 
   componentWillMount () {
