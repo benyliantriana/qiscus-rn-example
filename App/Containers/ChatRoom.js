@@ -10,6 +10,8 @@ import {
 } from 'react-native'
 import moment from 'moment'
 import { Actions, ActionConst } from 'react-native-router-flux'
+import FCM, {FCMEvent} from 'react-native-fcm'
+
 import qiscus from '../../libs/SDKCore'
 
 import { Images, Dictionary, Colors } from '../Themes'
