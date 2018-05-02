@@ -25,6 +25,7 @@ export default {
     cancel: 'Cancel',
     image: 'image',
     link: 'link',
+    fileAttachment: 'file attachment',
     messageCopied: 'Message copied',
     serverError: 'Server error',
     camera: 'Take Photo',
@@ -52,6 +53,7 @@ export default {
     deleteMember: 'Do you want delete "{{name}}"\nfrom group "{{roomName}}"?',
     yes: 'YES',
     no: 'NO',
-    addParticipant: 'Add Participant'
+    addParticipant: 'Add Participant',
+    errorGroup: 'Group name and photo required'
   }
 }
